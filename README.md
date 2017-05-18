@@ -65,7 +65,7 @@ Create a test coverage report
 
 ### `cz`
 
-Commit your changes in a `zen` way
+Commit your changes in a `zen` way (Past `tests` first)
 
 ### `build`
 
