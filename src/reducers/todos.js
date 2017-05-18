@@ -1,34 +1,26 @@
-const todo = (state = {}, action) => {
-  switch (action.type) {
-    case 'ADD_TODO':
-      return {
-        id: action.id,
-        text: action.text,
-        completed: false,
-      };
-    case 'TOGGLE_TODO':
-      if (state.id !== action.id) {
-        return state;
-      }
+import { processReducer } from '../utils';
+import { types } from '../actions';
 
-      return Object.assign({}, state, {
-        completed: !state.completed,
-      });
-
-    default:
-      return state;
-  }
+const todoReducers = {
+  [types.ADD_TODO]: (state, action) => ({
+    id: action.id,
+    text: action.text,
+    completed: false,
+  }),
+  [types.TOGGLE_TODO]: (state, action) =>
+    (state.id !== action.id ? state : { ...state, completed: !state.completed }),
 };
 
-const todos = (state = [], action) => {
-  switch (action.type) {
-    case 'ADD_TODO':
-      return [...state, todo(undefined, action)];
-    case 'TOGGLE_TODO':
-      return state.map(t => todo(t, action));
-    default:
-      return state;
-  }
+const todo = processReducer(todoReducers, {});
+
+const todosReducers = {
+  [types.ADD_TODO]: (state, action) => {
+    console.log('test');
+    return [...state, todo(undefined, action)];
+  },
+  [types.TOGGLE_TODO]: (state, action) => state.map(t => todo(t, action)),
 };
+
+const todos = processReducer(todosReducers, []);
 
 export default todos;
