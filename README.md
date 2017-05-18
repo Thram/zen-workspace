@@ -11,13 +11,13 @@ Starter kit for a React App by Touchtech buddies
 
 `git clone https://github.com/TouchtechLtd/starter-kit-react.git [your-app-name]`
 
+Go into your folder: `cd [your-app-name]`
+
 #### Don't forget to set the origin to your repo
 
 `git remote set-url origin https://github.com/[your-repo]`
 
 ### 3) Install packages
-
-In your folder: `cd [your-app-name]`
 
 run: `yarn`
 
