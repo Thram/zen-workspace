@@ -35,8 +35,15 @@ export default {
     rules: [
       {
         test: /\.jsx?$/,
-        use: 'babel-loader?cacheDirectory=true',
-        exclude: [`${__dirname}/node_modules/`],
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              compact: false,
+              cacheDirectory: true,
+            },
+          },
+        ],
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,

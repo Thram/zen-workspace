@@ -4,6 +4,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
+import { Group } from 'pure-components';
 
 // Server rendering support
 // import { BrowserRouter as Router, Route } from 'react-router-dom';
@@ -16,9 +17,9 @@ const store = createStore(todoApp);
 const App = () => (
   <Provider store={store}>
     <Router>
-      <div>
+      <Group container>
         <Route exact path="/" component={Home} />
-      </div>
+      </Group>
     </Router>
   </Provider>
 );

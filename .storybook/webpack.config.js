@@ -15,8 +15,16 @@ module.exports = (storybookBaseConfig, configType) =>
               },
             },
           ],
-          exclude: [`${__dirname}/node_modules/`],
-          include: path.resolve(__dirname, '../'),
+        },
+        {
+          test: /\.(jpe?g|png|gif|svg)$/i,
+          use: 'file-loader?name=images/[name].[ext]',
+        },
+        { test: /\.(mp3)$/i, use: 'file-loader?name=audio/[name].[ext]' },
+        { test: /\.(otf)$/i, use: 'file-loader?name=fonts/[name].[ext]' },
+        {
+          test: /\.css$/,
+          use: ['style-loader', 'css-loader'],
         },
         {
           test: /\.scss$/,
@@ -24,11 +32,12 @@ module.exports = (storybookBaseConfig, configType) =>
             'style-loader',
             {
               loader: 'css-loader',
-              options: { modules: true, sourceMap: true },
+              options: {
+                modules: true,
+              },
             },
             'sass-loader',
           ],
-          include: path.resolve(__dirname, '../'),
         },
       ],
     },

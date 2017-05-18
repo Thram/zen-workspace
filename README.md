@@ -37,6 +37,7 @@ This will install all the packages needed for start the project.
 # Technology Stack
 
 - [React](https://facebook.github.io/react/)
+- [Pure Components](https://github.com/Thram/pure-components)
 - [Redux](http://redux.js.org/)
 - [React Router](https://reacttraining.com/react-router/)
 - [glamorous](https://github.com/paypal/glamorous)
