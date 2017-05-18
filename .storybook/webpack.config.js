@@ -10,6 +10,7 @@ module.exports = (storybookBaseConfig, configType) =>
             {
               loader: 'babel-loader',
               options: {
+                compact: false,
                 cacheDirectory: true,
               },
             },
