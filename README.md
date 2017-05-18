@@ -49,7 +49,7 @@ All the scripts are executed the following way: `yarn [script]`
 
 ### `start`
 
-Starts a `Hot Server` for development at `http://0.0.0.0:8080`
+Starts a `Hot Server` for development at [http://0.0.0.0:8080](http://0.0.0.0:8080)
 
 ### `test`
 
