@@ -1,0 +1,24 @@
+{
+  "presets": [
+    "es2015",
+    "stage-2",
+    "react", [
+      "env",
+      {
+        "targets": {
+          "browsers": [
+            "last 4 versions",
+            "safari >= 7"
+          ]
+        }
+      }
+    ]
+  ],
+  "env": {
+    "test": {
+      "plugins": [
+        "nyc"
+      ]
+    }
+  }
+}
