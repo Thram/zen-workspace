@@ -4,14 +4,14 @@ import reducers from '../src/reducers';
 import { addTodo, toggleTodo } from '../src/actions';
 
 test('--- Todos Tests ---', (mainAssert) => {
-  test('- Add Todo', (assert) => {
+  mainAssert.test('Add Todo', (assert) => {
     const state = reducers({}, addTodo('test'));
 
     assert.equal(state.todos.length, 1);
 
     assert.end();
   });
-  test('- Toggle Todo', (assert) => {
+  mainAssert.test('Toggle Todo', (assert) => {
     const stateBefore = reducers({}, addTodo('test'));
     const state = reducers(stateBefore, toggleTodo(stateBefore.todos[0].id));
 

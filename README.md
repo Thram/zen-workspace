@@ -30,6 +30,7 @@ This will install all the packages needed for start the project.
 - [ESLint](http://eslint.org/)
 - [ESLint AirBnB Styleguide](https://github.com/airbnb/javascript)
 - [Tape](https://github.com/substack/tape)
+- [Enzyme](http://airbnb.io/enzyme/docs/guides/tape-ava.html)
 - [React Storybook](https://storybooks.js.org)
 - [nyc](https://github.com/istanbuljs/nyc)
 - [commitizen](http://commitizen.github.io/cz-cli/)
@@ -78,3 +79,7 @@ Creates production release at `./dist`
 - [VSCode Plugins](https://github.com/viatsko/awesome-vscode)
 
 #### Recommended Plugins: `ESLint`, `Prettier`, `ESLint Prettier`, `Beautify`
+
+# Articles
+
+- [Why I use Tape Instead of Mocha & So Should You](https://medium.com/javascript-scene/why-i-use-tape-instead-of-mocha-so-should-you-6aa105d8eaf4)
