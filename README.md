@@ -53,7 +53,7 @@ Starts a `Hot Server` for development at [http://0.0.0.0:8080](http://0.0.0.0:80
 
 ### `test`
 
-Run linter and tests.
+Run `Linter`, your `Snapshot Tests` and your `Regular Tests`.
 
 ### `cz`
 
