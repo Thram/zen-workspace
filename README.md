@@ -29,10 +29,8 @@ This will install all the packages needed for start the project.
 - [Babel](babeljs.io)
 - [ESLint](http://eslint.org/)
 - [ESLint AirBnB Styleguide](https://github.com/airbnb/javascript)
-- [Tape](https://github.com/substack/tape)
-- [Enzyme](http://airbnb.io/enzyme/docs/guides/tape-ava.html)
 - [React Storybook](https://storybooks.js.org)
-- [nyc](https://github.com/istanbuljs/nyc)
+- [Jest](https://facebook.github.io/jest/)
 - [commitizen](http://commitizen.github.io/cz-cli/)
 
 # Technology Stack
@@ -55,15 +53,7 @@ Starts a `Hot Server` for development at [http://0.0.0.0:8080](http://0.0.0.0:80
 
 ### `test`
 
-Run the tests and watch for changes.
-
-### `test:single`
-
-Run the tests once.
-
-### `cover`
-
-Create a test coverage report
+Run linter and tests.
 
 ### `cz`
 
@@ -80,6 +70,24 @@ Creates production release at `./dist`
 
 #### Recommended Plugins: `ESLint`, `Prettier`, `ESLint Prettier`, `Beautify`
 
-# Articles
+# Recommended Articles
 
-- [Why I use Tape Instead of Mocha & So Should You](https://medium.com/javascript-scene/why-i-use-tape-instead-of-mocha-so-should-you-6aa105d8eaf4)
+### The Two Pillars of JavaScript
+- [Part 1: Prototypal Inheritance](https://medium.com/javascript-scene/the-two-pillars-of-javascript-ee6f3281e7f3)
+- [Part 2: Functional Programming](https://medium.com/javascript-scene/the-two-pillars-of-javascript-pt-2-functional-programming-a63aa53a41a4)
+
+### Composing Software
+- [The Rise and Fall and Rise of Functional Programming](https://medium.com/javascript-scene/the-rise-and-fall-and-rise-of-functional-programming-composable-software-c2d91b424c8c)
+- [Why Learn Functional Programming in JavaScript?](https://medium.com/javascript-scene/why-learn-functional-programming-in-javascript-composing-software-ea13afc7a257)
+- [A Functional Programmer’s Introduction to JavaScript](https://medium.com/javascript-scene/a-functional-programmers-introduction-to-javascript-composing-software-d670d14ede30)
+- [Higher Order Functions](https://medium.com/javascript-scene/higher-order-functions-composing-software-5365cf2cbe99)
+- [Reduce](https://medium.com/javascript-scene/reduce-composing-software-fe22f0c39a1d)
+- [Functors & Categories](https://medium.com/javascript-scene/functors-categories-61e031bac53f)
+- [Composing Software: An Introduction](https://medium.com/javascript-scene/composing-software-an-introduction-27b72500d6ea)
+
+### TDD
+- [TDD the RITE Way](https://medium.com/javascript-scene/tdd-the-rite-way-53c9b46f45e3)
+
+### Others
+- [Elements of JavaScript Style](https://medium.com/javascript-scene/elements-of-javascript-style-caa8821cb99f)
+- [Arrow Functions](https://medium.com/javascript-scene/familiarity-bias-is-holding-you-back-its-time-to-embrace-arrow-functions-3d37e1a9bb75)

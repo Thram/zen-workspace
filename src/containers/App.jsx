@@ -4,11 +4,10 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import { Group } from 'pure-components';
-
 // Server rendering support
 // import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { HashRouter as Router, Route } from 'react-router-dom';
+import { Group } from '../components/pure';
 import { Home } from './views';
 import todoApp from '../reducers';
 

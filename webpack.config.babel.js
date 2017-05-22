@@ -1,8 +1,11 @@
 /**
  * Created by thram on 18/01/17.
  */
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import HtmlwebpackPlugin from 'html-webpack-plugin';
 import { optimize } from 'webpack';
+
+const isProd = process.env.NODE_ENV === 'production';
 
 const INDEX_HTML_SETUP = {
   template: 'node_modules/html-webpack-template/index.ejs',
@@ -57,16 +60,19 @@ export default {
       },
       {
         test: /\.scss$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: { modules: true, sourceMap: !isProd },
             },
-          },
-          'sass-loader',
-        ],
+            {
+              loader: 'sass-loader',
+              options: { sourceMap: !isProd },
+            },
+          ],
+        }),
       },
     ],
   },
@@ -83,6 +89,7 @@ export default {
       chunks: ['vendor', 'app'],
       filename: `${__dirname}/dist/index.html`,
     }),
+    new ExtractTextPlugin('styles.css'),
   ],
   performance: {
     hints: false,

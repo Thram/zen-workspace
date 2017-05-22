@@ -10,6 +10,7 @@
     "react/prop-types": 0
   },
   "env": {
+    "jest": true,
     "browser": true,
     "es6": true
   }

@@ -1,7 +1,10 @@
 const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = (storybookBaseConfig, configType) =>
   Object.assign({}, storybookBaseConfig, {
+    devtool: isProd ? 'eval' : 'source-map',
     module: {
       rules: [
         {
@@ -15,30 +18,31 @@ module.exports = (storybookBaseConfig, configType) =>
               },
             },
           ],
-        },
-        {
-          test: /\.(jpe?g|png|gif|svg)$/i,
-          use: 'file-loader?name=images/[name].[ext]',
-        },
-        { test: /\.(mp3)$/i, use: 'file-loader?name=audio/[name].[ext]' },
-        { test: /\.(otf)$/i, use: 'file-loader?name=fonts/[name].[ext]' },
-        {
-          test: /\.css$/,
-          use: ['style-loader', 'css-loader'],
+          exclude: [`${__dirname}/node_modules/`],
+          include: path.resolve(__dirname, '../'),
         },
         {
           test: /\.scss$/,
-          use: [
-            'style-loader',
-            {
-              loader: 'css-loader',
-              options: {
-                modules: true,
+          use: isProd
+            ? ExtractTextPlugin.extract({
+              fallback: 'style-loader',
+              use: ['css-loader?modules', 'sass-loader'],
+            })
+            : [
+              'style-loader',
+              {
+                loader: 'css-loader',
+                options: { modules: true, sourceMap: true },
               },
-            },
-            'sass-loader',
-          ],
+              {
+                loader: 'sass-loader',
+                options: { sourceMap: true },
+              },
+            ],
+          include: path.resolve(__dirname, '../'),
         },
       ],
     },
+    plugins: (storybookBaseConfig.plugins || [])
+      .concat(isProd ? new ExtractTextPlugin('styles.css') : []),
   });

@@ -14,10 +14,7 @@ const todoReducers = {
 const todo = processReducer(todoReducers, {});
 
 const todosReducers = {
-  [types.ADD_TODO]: (state, action) => {
-    console.log('test');
-    return [...state, todo(undefined, action)];
-  },
+  [types.ADD_TODO]: (state, action) => [...state, todo(undefined, action)],
   [types.TOGGLE_TODO]: (state, action) => state.map(t => todo(t, action)),
 };
 
