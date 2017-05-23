@@ -4,7 +4,7 @@ const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = (storybookBaseConfig, configType) =>
   Object.assign({}, storybookBaseConfig, {
-    devtool: isProd ? 'eval' : 'source-map',
+    devtool: 'source-map',
     module: {
       rules: [
         {

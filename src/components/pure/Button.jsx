@@ -57,7 +57,7 @@ class Button extends Component {
       hover,
       selected,
     });
-    const sizeClass = InputUnit(size);
+    const sizeClass = size ? InputUnit(size) : '';
 
     return (
       <Element

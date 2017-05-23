@@ -206,6 +206,8 @@ const Table = ({ bordered, horizontal, striped }) =>
 
 const TableRowOdd = getClass('pure-table-odd');
 
+console.log(getClass('pure-table-odd'));
+
 export {
   Hidden,
   OperaOnly,

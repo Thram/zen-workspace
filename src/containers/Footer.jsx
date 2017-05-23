@@ -1,22 +1,22 @@
 import React from 'react';
-import FilterLink from '../containers/FilterLink';
+import FilterLink from './FilterLink';
+import { Group, ButtonGroup } from '../components/pure';
 
 const Footer = () => (
-  <p>
+  <Group container>
     Show:
-    {' '}
-    <FilterLink filter="SHOW_ALL">
-      All
-    </FilterLink>
-    {', '}
-    <FilterLink filter="SHOW_ACTIVE">
-      Active
-    </FilterLink>
-    {', '}
-    <FilterLink filter="SHOW_COMPLETED">
-      Completed
-    </FilterLink>
-  </p>
+    <ButtonGroup>
+      <FilterLink filter="SHOW_ALL" type="primary">
+        All
+      </FilterLink>
+      <FilterLink filter="SHOW_ACTIVE" type="secondary">
+        Active
+      </FilterLink>
+      <FilterLink filter="SHOW_COMPLETED" type="success">
+        Completed
+      </FilterLink>
+    </ButtonGroup>
+  </Group>
 );
 
 export default Footer;

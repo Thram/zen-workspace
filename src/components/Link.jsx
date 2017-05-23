@@ -1,15 +1,15 @@
 import React from 'react';
+import { Button } from '../components/pure';
 
 const click = onClick => (ev) => {
   ev.preventDefault();
   onClick();
 };
 
-const Link = ({ active, children, onClick }) =>
-  (active
-    ? <span>{children}</span>
-    : <a role="button" tabIndex="0" onClick={click(onClick)}>
-      {children}
-    </a>);
+const Link = ({ active = false, type = 'primary', children, onClick }) => (
+  <Button type={type} onClick={click(onClick)} active={active}>
+    {children}
+  </Button>
+);
 
 export default Link;

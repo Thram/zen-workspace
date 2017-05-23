@@ -1,15 +1,12 @@
 import React from 'react';
+import { Button, helpers } from '../components/pure';
 
 const Todo = ({ onClick, completed, text }) => (
-  <li
-    style={{
-      textDecoration: completed ? 'line-through' : 'none',
-    }}
-  >
-    <a role="button" tabIndex="0" onClick={onClick}>
-      {text}
-    </a>
-  </li>
-);
+  <tr className={completed ? helpers.TableRowOdd : ''}>
+    <td>
+      <Button size="1" onClick={onClick}>{text}</Button>
+    </td>
+  </tr>
+  );
 
 export default Todo;

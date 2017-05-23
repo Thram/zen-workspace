@@ -16,7 +16,7 @@ const store = createStore(todoApp);
 const App = () => (
   <Provider store={store}>
     <Router>
-      <Group container>
+      <Group container style={{ padding: '2rem' }}>
         <Route exact path="/" component={Home} />
       </Group>
     </Router>

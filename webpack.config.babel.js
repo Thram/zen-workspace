@@ -88,6 +88,50 @@ if (isProd) {
   );
 }
 
+const module = {
+  rules: [
+    {
+      test: /\.jsx?$/,
+      use: [
+        {
+          loader: 'babel-loader',
+          options: {
+            compact: isProd,
+            cacheDirectory: true,
+          },
+        },
+      ],
+      exclude: [`${__dirname}/node_modules/`],
+    },
+    {
+      test: /\.(jpe?g|png|gif|svg)$/i,
+      use: 'file-loader?name=images/[name].[ext]',
+    },
+    { test: /\.(mp3)$/i, use: 'file-loader?name=audio/[name].[ext]' },
+    { test: /\.(otf)$/i, use: 'file-loader?name=fonts/[name].[ext]' },
+    {
+      test: /\.css$/,
+      use: ['style-loader', 'css-loader'],
+    },
+    {
+      test: /\.scss$/,
+      use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: [
+          {
+            loader: 'css-loader',
+            options: { modules: true, sourceMap: !isProd },
+          },
+          {
+            loader: 'sass-loader',
+            options: { sourceMap: !isProd },
+          },
+        ],
+      }),
+    },
+  ],
+};
+
 export default function (env = {}) {
   if (env.compress) {
     plugins.push(
@@ -114,48 +158,7 @@ export default function (env = {}) {
       extensions: ['.js', '.jsx'],
     },
     devtool: !isProd && 'source-map',
-    module: {
-      rules: [
-        {
-          test: /\.jsx?$/,
-          use: [
-            {
-              loader: 'babel-loader',
-              options: {
-                compact: isProd,
-                cacheDirectory: true,
-              },
-            },
-          ],
-        },
-        {
-          test: /\.(jpe?g|png|gif|svg)$/i,
-          use: 'file-loader?name=images/[name].[ext]',
-        },
-        { test: /\.(mp3)$/i, use: 'file-loader?name=audio/[name].[ext]' },
-        { test: /\.(otf)$/i, use: 'file-loader?name=fonts/[name].[ext]' },
-        {
-          test: /\.css$/,
-          use: ['style-loader', 'css-loader'],
-        },
-        {
-          test: /\.scss$/,
-          use: ExtractTextPlugin.extract({
-            fallback: 'style-loader',
-            use: [
-              {
-                loader: 'css-loader',
-                options: { modules: true, sourceMap: !isProd },
-              },
-              {
-                loader: 'sass-loader',
-                options: { sourceMap: !isProd },
-              },
-            ],
-          }),
-        },
-      ],
-    },
+    module,
     plugins,
     performance: {
       hints: false,

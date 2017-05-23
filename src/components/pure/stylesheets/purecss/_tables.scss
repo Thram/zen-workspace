@@ -7,6 +7,7 @@ https://github.com/yahoo/pure/blob/master/LICENSE.md
 
 .pure-table {
   /* Remove spacing between table cells (from Normalize.css) */
+  display: table;
   border-collapse: collapse;
   border-spacing: 0;
   empty-cells: show;

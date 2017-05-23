@@ -17,6 +17,7 @@
     "lint": "eslint src --ext .jsx,.js",
     "lint:test": "eslint __test__ --ext .js",
     "test": "yarn lint && jest",
+    "test:snap": "yarn lint && jest --updateSnapshot",
     "start": "webpack-dev-server --host 0.0.0.0 --port 8080",
     "storybook": "start-storybook -p 6006"
   },

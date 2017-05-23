@@ -25,7 +25,7 @@ class Select extends Component {
 
   render = () => {
     const { size, className } = this.props;
-    const baseClass = InputUnit(size);
+    const baseClass = size ? InputUnit(size) : '';
     return (
       <Element
         tag="select"

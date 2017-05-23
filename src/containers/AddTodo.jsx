@@ -1,33 +1,31 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addTodo } from '../actions';
+import { Group, Input, Button, Form, ControlGroup } from '../components/pure';
 
-const AddTodo = ({ dispatch }) => {
-  let input;
+class AddTodo extends Component {
+  onSubmit = (e) => {
+    e.preventDefault();
+    if (this.input.value.trim()) {
+      const { dispatch } = this.props;
+      dispatch(addTodo(this.input.value));
+      this.input.value = '';
+    }
+  };
+  setRef = (node) => {
+    this.input = node && node.element;
+  };
 
-  return (
-    <div>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          if (!input.value.trim()) {
-            return;
-          }
-          dispatch(addTodo(input.value));
-          input.value = '';
-        }}
-      >
-        <input
-          ref={(node) => {
-            input = node;
-          }}
-        />
-        <button type="submit">
-          Add Todo
-        </button>
-      </form>
-    </div>
+  render = () => (
+    <Group container>
+      <Form onSubmit={this.onSubmit} aligned>
+        <ControlGroup>
+          <Input ref={this.setRef} style={{ marginRight: '1rem' }} />
+          <Button submit>Add Todo</Button>
+        </ControlGroup>
+      </Form>
+    </Group>
   );
-};
+}
 
 export default connect()(AddTodo);
