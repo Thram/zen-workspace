@@ -1,5 +1,6 @@
-import Home from './Home';
+import Mocks from './Mocks';
+import Todo from './Todo';
 
-export { Home };
+export { Todo, Mocks };
 
-export default { Home };
+export default { Todo, Mocks };
