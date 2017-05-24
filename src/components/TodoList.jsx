@@ -1,6 +1,6 @@
 import React from 'react';
 import Todo from './Todo';
-import { Table } from '../components/pure';
+import { Table } from './pure';
 
 const TodoList = ({ todos, onTodoClick }) => (
   <Table size="1/2">

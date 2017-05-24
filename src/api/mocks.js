@@ -1,6 +1,7 @@
 // Using JSONPlaceholder
 // For more info: https://github.com/typicode/jsonplaceholder#how-to
 import { keys } from 'lodash';
+
 const FAKER_API = 'https://jsonplaceholder.typicode.com';
 const jsonToQueryString = json =>
   `?${keys(json)

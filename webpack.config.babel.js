@@ -1,6 +1,7 @@
 /**
  * Created by thram on 18/01/17.
  */
+import { resolve } from 'path';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import HtmlwebpackPlugin from 'html-webpack-plugin';
 import CompressionPlugin from 'compression-webpack-plugin';
@@ -10,6 +11,15 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { optimize, LoaderOptionsPlugin, DefinePlugin } from 'webpack';
 
 const isProd = process.env.NODE_ENV === 'production';
+const include = [resolve(__dirname, './src'), resolve(__dirname, './stories')];
+const exclude = [resolve(__dirname, '../node_modules/')];
+
+const getRule = (test, use) => ({
+  test,
+  use,
+  include,
+  exclude,
+});
 
 const INDEX_HTML_SETUP = {
   template: 'node_modules/html-webpack-template/index.ejs',
@@ -21,7 +31,6 @@ const INDEX_HTML_SETUP = {
       content: 'user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1',
     },
   ],
-  links: ['https://fonts.googleapis.com/icon?family=Material+Icons'],
   inject: false,
 };
 
@@ -90,34 +99,43 @@ if (isProd) {
 
 const module = {
   rules: [
-    {
-      test: /\.jsx?$/,
-      use: [
-        {
-          loader: 'babel-loader',
-          options: {
-            compact: isProd,
-            cacheDirectory: true,
-          },
+    getRule(/\.jsx?$/, [
+      {
+        loader: 'babel-loader',
+        options: {
+          compact: isProd,
+          cacheDirectory: true,
         },
-      ],
-      exclude: [`${__dirname}/node_modules/`],
-    },
-    {
-      test: /\.(jpe?g|png|gif|svg)$/i,
-      use: 'file-loader?name=images/[name].[ext]',
-    },
-    { test: /\.(mp3)$/i, use: 'file-loader?name=audio/[name].[ext]' },
-    { test: /\.(otf)$/i, use: 'file-loader?name=fonts/[name].[ext]' },
-    {
-      test: /\.css$/,
-      use: ['style-loader', 'css-loader'],
-    },
-    {
-      test: /\.scss$/,
-      use: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: [
+      },
+    ]),
+    getRule(
+      /\.(jpe?g|png|gif|svg|webp)$/i,
+      'file-loader?name=images/[name].[ext]',
+    ),
+    getRule(/\.(mp4|webm|ogv)$/i, 'file-loader?name=video/[name].[ext]'),
+    getRule(/\.(mp3|ogg|wav)$/i, 'file-loader?name=audio/[name].[ext]'),
+    getRule(
+      /\.(eot|otf|ttf|woff|woff2)$/i,
+      'file-loader?name=fonts/[name].[ext]',
+    ),
+    getRule(
+      /\.css$/i,
+      isProd
+        ? ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader'],
+        })
+        : ['style-loader', 'css-loader'],
+    ),
+    getRule(
+      /\.scss$/i,
+      isProd
+        ? ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader?modules', 'sass-loader'],
+        })
+        : [
+          'style-loader',
           {
             loader: 'css-loader',
             options: { modules: true, sourceMap: !isProd },
@@ -127,8 +145,7 @@ const module = {
             options: { sourceMap: !isProd },
           },
         ],
-      }),
-    },
+    ),
   ],
 };
 

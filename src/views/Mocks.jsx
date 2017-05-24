@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { getUsers, getPosts, getAlbums } from '../../api/mocks';
-import { Group, ButtonGroup, Button } from '../../components/pure';
+import { getUsers, getPosts, getAlbums } from '../api/mocks';
+import { Group, ButtonGroup, Button } from '../components/pure';
 
 class Mocks extends Component {
   state = {

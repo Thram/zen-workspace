@@ -12,6 +12,35 @@ exports[`Storyshots App App Container 1`] = `
   <div
     className="pure-u-1 css-d1ao1r "
   >
+    <h2>
+      Examples
+    </h2>
+    <div>
+      <a
+        className="active"
+        href="#/"
+        onClick={[Function]}
+        style={Object {}}
+      >
+        Home
+      </a>
+      <a
+        className={undefined}
+        href="#/mocks"
+        onClick={[Function]}
+        style={undefined}
+      >
+        Mocks
+      </a>
+      <a
+        className={undefined}
+        href="#/icons"
+        onClick={[Function]}
+        style={undefined}
+      >
+        Icons
+      </a>
+    </div>
     <div
       className="pure-g css-d1ao1r "
     >

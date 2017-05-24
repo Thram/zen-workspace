@@ -51,6 +51,10 @@ All the scripts are executed the following way: `yarn [script]`
 
 Starts a `Hot Server` for development at [http://0.0.0.0:8080](http://0.0.0.0:8080)
 
+### `storybook`
+
+Starts `React Storybook` for development at [http://0.0.0.0:6006](http://0.0.0.0:6006)
+
 ### `test`
 
 Run `Linter`, your `Snapshot Tests` and your `Regular Tests`.

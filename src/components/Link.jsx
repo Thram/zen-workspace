@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '../components/pure';
+import { Button } from './pure';
 
 const click = onClick => (ev) => {
   ev.preventDefault();
