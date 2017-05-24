@@ -1,4 +1,14 @@
 @import 'https://fonts.googleapis.com/icon?family=Material+Icons';
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 .material-icons {
   cursor: default;
   font-family: 'Material Icons';
