@@ -24,7 +24,7 @@
   "jest": {
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
-      "\\.(scss|css|less|sass)$": "identity-obj-proxy"
+      "^.+\\.(css|scss|sass|less)$": "identity-obj-proxy"
     }
   },
   "devDependencies": {
@@ -58,7 +58,6 @@
     "husky": "^0.13.3",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^20.0.3",
-    "node-fetch": "^1.7.0",
     "node-sass": "^4.5.3",
     "npm-run-all": "^4.0.2",
     "preload-webpack-plugin": "^1.2.2",
