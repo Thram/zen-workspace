@@ -1,7 +1,7 @@
 import Mocks from './Mocks';
-import Todo from './Todo';
+import Todos from './Todos';
 import Icons from './Icons';
 
-export { Todo, Mocks, Icons };
+export { Todos, Mocks, Icons };
 
-export default { Todo, Mocks, Icons };
+export default { Todos, Mocks, Icons };

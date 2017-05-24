@@ -1,3 +1,5 @@
+import { zipObject, snakeCase } from 'lodash';
+
 const processReducer = (reducers, initState = {}) => (
   state = initState,
   action,
@@ -6,5 +8,7 @@ const processReducer = (reducers, initState = {}) => (
   return reducer ? reducer(state, action) : state;
 };
 
-export { processReducer };
-export default { processReducer };
+const Enum = (...args) => zipObject(args.map(value => snakeCase(value)), args);
+
+export { processReducer, Enum };
+export default { processReducer, Enum };

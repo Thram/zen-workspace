@@ -1,5 +1,6 @@
 import { resolve } from 'path';
 import { assign } from 'lodash';
+import ProgressBarPlugin from 'progress-bar-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 const isProd = process.env.NODE_ENV === 'production';
@@ -71,7 +72,10 @@ export default (storybookBaseConfig, configType) => ({
     ],
   },
   plugins: (storybookBaseConfig.plugins || [])
-    .concat(isProd ? new ExtractTextPlugin('[name].css') : []),
+    .concat(
+      new ProgressBarPlugin(),
+      isProd ? new ExtractTextPlugin('[name].css') : [],
+    ),
   performance: {
     hints: false,
   },

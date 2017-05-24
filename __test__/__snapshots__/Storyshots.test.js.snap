@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots App App Container 1`] = `
+exports[`Storyshots Components Flat Button 1`] = `
 <div
   className="pure-g css-d1ao1r "
   style={
@@ -12,35 +12,858 @@ exports[`Storyshots App App Container 1`] = `
   <div
     className="pure-u-1 css-d1ao1r "
   >
-    <h2>
-      Examples
-    </h2>
-    <div>
-      <a
-        className="active"
-        href="#/"
-        onClick={[Function]}
-        style={Object {}}
+    <a
+      onClick={[Function]}
+      role="button"
+      style={
+        Object {
+          "cursor": "pointer",
+          "display": "inline-block",
+          "width": "auto",
+        }
+      }
+      tabIndex="0"
+    >
+      <div
+        style={
+          Object {
+            "alignItems": "center",
+            "display": "flex",
+          }
+        }
       >
-        Home
-      </a>
-      <a
-        className={undefined}
-        href="#/mocks"
-        onClick={[Function]}
-        style={undefined}
+        Text
+      </div>
+    </a>
+    <a
+      onClick={[Function]}
+      role="button"
+      style={
+        Object {
+          "cursor": "pointer",
+          "display": "inline-block",
+          "width": "auto",
+        }
+      }
+      tabIndex="0"
+    >
+      <div
+        style={
+          Object {
+            "alignItems": "center",
+            "display": "flex",
+            "width": "100px",
+          }
+        }
       >
-        Mocks
-      </a>
-      <a
-        className={undefined}
-        href="#/icons"
-        onClick={[Function]}
-        style={undefined}
+        <img
+          alt="Image"
+          className="pure-img "
+          src="https://s-media-cache-ak0.pinimg.com/736x/e5/a0/69/e5a06942fa42823c88be5f3a834e063d.jpg"
+        />
+      </div>
+    </a>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Components Icon 1`] = `
+<div
+  className="pure-g css-d1ao1r "
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="pure-u-1 css-d1ao1r "
+  >
+    <h1>
+      Material Icons!
+    </h1>
+    <i
+      className="material-icons"
+      style={
+        Object {
+          "color": "#E6867A",
+        }
+      }
+    >
+      done
+    </i>
+    <i
+      className="material-icons"
+      style={
+        Object {
+          "color": "#ED4A6A",
+          "fontSize": "100px",
+        }
+      }
+    >
+      extension
+    </i>
+    <i
+      className="material-icons"
+      style={
+        Object {
+          "color": "#D9AB91",
+          "fontSize": "50px",
+        }
+      }
+    >
+      face
+    </i>
+    <i
+      className="material-icons"
+      style={
+        Object {
+          "color": "#D9D5A7",
+          "fontSize": "30px",
+        }
+      }
+    >
+      motorcycle
+    </i>
+    <i
+      className="material-icons"
+      style={
+        Object {
+          "color": "#C7FCD7",
+          "fontSize": "80px",
+        }
+      }
+    >
+      pets
+    </i>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Components Link 1`] = `
+<div
+  className="pure-g css-d1ao1r "
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="pure-u-1 css-d1ao1r "
+  >
+    <button
+      className="pure-button pure-button-primary  "
+      onClick={[Function]}
+      type="button"
+    >
+      Click me!
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Components Todo List 1`] = `
+<div
+  className="pure-g css-d1ao1r "
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="pure-u-1 css-d1ao1r "
+  >
+    <table
+      className="pure-table pure-u-12-24 "
+    >
+      <tbody>
+        <tr
+          className=""
+        >
+          <td>
+            <a
+              onClick={[Function]}
+              role="button"
+              style={
+                Object {
+                  "cursor": "pointer",
+                  "display": "inline-block",
+                  "width": "auto",
+                }
+              }
+              tabIndex="0"
+            >
+              <div
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                  }
+                }
+              >
+                <i
+                  className="material-icons"
+                >
+                  check_box_outline_blank
+                </i>
+                <span
+                  style={
+                    Object {
+                      "marginLeft": "1rem",
+                    }
+                  }
+                >
+                  Task 1
+                </span>
+              </div>
+            </a>
+          </td>
+        </tr>
+        <tr
+          className=""
+        >
+          <td>
+            <a
+              onClick={[Function]}
+              role="button"
+              style={
+                Object {
+                  "cursor": "pointer",
+                  "display": "inline-block",
+                  "width": "auto",
+                }
+              }
+              tabIndex="0"
+            >
+              <div
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                  }
+                }
+              >
+                <i
+                  className="material-icons"
+                >
+                  check_box_outline_blank
+                </i>
+                <span
+                  style={
+                    Object {
+                      "marginLeft": "1rem",
+                    }
+                  }
+                >
+                  Task 2
+                </span>
+              </div>
+            </a>
+          </td>
+        </tr>
+        <tr
+          className="pure-table-odd"
+        >
+          <td>
+            <a
+              onClick={[Function]}
+              role="button"
+              style={
+                Object {
+                  "cursor": "pointer",
+                  "display": "inline-block",
+                  "width": "auto",
+                }
+              }
+              tabIndex="0"
+            >
+              <div
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                  }
+                }
+              >
+                <i
+                  className="material-icons"
+                >
+                  check_box
+                </i>
+                <span
+                  style={
+                    Object {
+                      "marginLeft": "1rem",
+                    }
+                  }
+                >
+                  Task 3
+                </span>
+              </div>
+            </a>
+          </td>
+        </tr>
+        <tr
+          className=""
+        >
+          <td>
+            <a
+              onClick={[Function]}
+              role="button"
+              style={
+                Object {
+                  "cursor": "pointer",
+                  "display": "inline-block",
+                  "width": "auto",
+                }
+              }
+              tabIndex="0"
+            >
+              <div
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                  }
+                }
+              >
+                <i
+                  className="material-icons"
+                >
+                  check_box_outline_blank
+                </i>
+                <span
+                  style={
+                    Object {
+                      "marginLeft": "1rem",
+                    }
+                  }
+                >
+                  Task 4
+                </span>
+              </div>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Containers Add Todo 1`] = `
+<div
+  className="pure-g css-d1ao1r "
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="pure-u-1 css-d1ao1r "
+  >
+    <div
+      className="pure-g css-d1ao1r "
+    >
+      <div
+        className="pure-u-1 css-d1ao1r "
       >
-        Icons
-      </a>
+        <form
+          className="pure-form pure-form-aligned "
+          onSubmit={[Function]}
+        >
+          <div
+            className="pure-control-group "
+          >
+            <input
+              className="pure-input "
+              style={
+                Object {
+                  "marginRight": "1rem",
+                }
+              }
+            />
+            <button
+              className="pure-button  "
+              type="submit"
+            >
+              Add Todo
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Containers Filter 1`] = `
+<div
+  className="pure-g css-d1ao1r "
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="pure-u-1 css-d1ao1r "
+  >
+    <div
+      className="pure-g css-d1ao1r "
+    >
+      <div
+        className="pure-u-1 css-d1ao1r "
+      >
+        Show:
+        <div
+          className="pure-button-group "
+        >
+          <button
+            className="pure-button pure-button-primary  "
+            onClick={[Function]}
+            type="button"
+          >
+            All
+          </button>
+          <button
+            className="pure-button pure-button-secondary  "
+            onClick={[Function]}
+            type="button"
+          >
+            Active
+          </button>
+          <button
+            className="pure-button pure-button-success  "
+            onClick={[Function]}
+            type="button"
+          >
+            Completed
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Containers Filter Link 1`] = `
+<div
+  className="pure-g css-d1ao1r "
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="pure-u-1 css-d1ao1r "
+  >
+    <button
+      className="pure-button pure-button-primary  "
+      onClick={[Function]}
+      type="button"
+    >
+      Show All!!
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Containers Navigation 1`] = `
+<div
+  className="pure-g css-d1ao1r "
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="pure-u-1 css-d1ao1r "
+  >
+    <div
+      className="pure-g css-d1ao1r "
+    >
+      <div
+        className="pure-u-1 css-d1ao1r "
+      >
+        <div
+          style={
+            Object {
+              "alignItems": "center",
+              "display": "flex",
+            }
+          }
+        >
+          <h2>
+            Test
+          </h2>
+          <div
+            style={
+              Object {
+                "marginLeft": "1rem",
+              }
+            }
+          >
+            <a
+              className="active"
+              href="#/"
+              onClick={[Function]}
+              style={
+                Object {
+                  "padding": "0.2rem 0.5rem",
+                }
+              }
+            >
+              Home
+            </a>
+            <a
+              className={undefined}
+              href="#/mocks"
+              onClick={[Function]}
+              style={
+                Object {
+                  "padding": "0.2rem 0.5rem",
+                }
+              }
+            >
+              Mocks
+            </a>
+            <a
+              className={undefined}
+              href="#/icons"
+              onClick={[Function]}
+              style={
+                Object {
+                  "padding": "0.2rem 0.5rem",
+                }
+              }
+            >
+              Icons
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="pure-g css-d1ao1r "
+    >
+      <div
+        className="pure-u-1 css-d1ao1r "
+      >
+        <div>
+          Home
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Containers Visible Todo List 1`] = `
+<div
+  className="pure-g css-d1ao1r "
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="pure-u-1 css-d1ao1r "
+  >
+    <table
+      className="pure-table pure-u-12-24 "
+    >
+      <tbody>
+        <tr
+          className=""
+        >
+          <td>
+            <a
+              onClick={[Function]}
+              role="button"
+              style={
+                Object {
+                  "cursor": "pointer",
+                  "display": "inline-block",
+                  "width": "auto",
+                }
+              }
+              tabIndex="0"
+            >
+              <div
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                  }
+                }
+              >
+                <i
+                  className="material-icons"
+                >
+                  check_box_outline_blank
+                </i>
+                <span
+                  style={
+                    Object {
+                      "marginLeft": "1rem",
+                    }
+                  }
+                >
+                  Task 1
+                </span>
+              </div>
+            </a>
+          </td>
+        </tr>
+        <tr
+          className=""
+        >
+          <td>
+            <a
+              onClick={[Function]}
+              role="button"
+              style={
+                Object {
+                  "cursor": "pointer",
+                  "display": "inline-block",
+                  "width": "auto",
+                }
+              }
+              tabIndex="0"
+            >
+              <div
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                  }
+                }
+              >
+                <i
+                  className="material-icons"
+                >
+                  check_box_outline_blank
+                </i>
+                <span
+                  style={
+                    Object {
+                      "marginLeft": "1rem",
+                    }
+                  }
+                >
+                  Task 2
+                </span>
+              </div>
+            </a>
+          </td>
+        </tr>
+        <tr
+          className="pure-table-odd"
+        >
+          <td>
+            <a
+              onClick={[Function]}
+              role="button"
+              style={
+                Object {
+                  "cursor": "pointer",
+                  "display": "inline-block",
+                  "width": "auto",
+                }
+              }
+              tabIndex="0"
+            >
+              <div
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                  }
+                }
+              >
+                <i
+                  className="material-icons"
+                >
+                  check_box
+                </i>
+                <span
+                  style={
+                    Object {
+                      "marginLeft": "1rem",
+                    }
+                  }
+                >
+                  Task 3
+                </span>
+              </div>
+            </a>
+          </td>
+        </tr>
+        <tr
+          className=""
+        >
+          <td>
+            <a
+              onClick={[Function]}
+              role="button"
+              style={
+                Object {
+                  "cursor": "pointer",
+                  "display": "inline-block",
+                  "width": "auto",
+                }
+              }
+              tabIndex="0"
+            >
+              <div
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                  }
+                }
+              >
+                <i
+                  className="material-icons"
+                >
+                  check_box_outline_blank
+                </i>
+                <span
+                  style={
+                    Object {
+                      "marginLeft": "1rem",
+                    }
+                  }
+                >
+                  Task 4
+                </span>
+              </div>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div
+      className="pure-g css-d1ao1r "
+    >
+      <div
+        className="pure-u-1 css-d1ao1r "
+      >
+        Show:
+        <div
+          className="pure-button-group "
+        >
+          <button
+            className="pure-button pure-button-primary  "
+            onClick={[Function]}
+            type="button"
+          >
+            All
+          </button>
+          <button
+            className="pure-button pure-button-secondary  "
+            onClick={[Function]}
+            type="button"
+          >
+            Active
+          </button>
+          <button
+            className="pure-button pure-button-success  "
+            onClick={[Function]}
+            type="button"
+          >
+            Completed
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Views Mocks 1`] = `
+<div
+  className="pure-g css-d1ao1r "
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="pure-u-1 css-d1ao1r "
+  >
+    <div
+      className="pure-g css-d1ao1r "
+    >
+      <div
+        className="pure-u-1 css-d1ao1r "
+      >
+        <div
+          className="pure-g css-d1ao1r "
+        >
+          <div
+            className="pure-u-1 css-d1ao1r "
+          >
+            <div
+              className="pure-button-group "
+            >
+              <button
+                className="pure-button  "
+                onClick={[Function]}
+                type="button"
+              >
+                Users
+              </button>
+              <button
+                className="pure-button  "
+                onClick={[Function]}
+                type="button"
+              >
+                Posts
+              </button>
+              <button
+                className="pure-button  "
+                onClick={[Function]}
+                type="button"
+              >
+                Albums
+              </button>
+            </div>
+          </div>
+        </div>
+        <pre
+          style={
+            Object {
+              "whiteSpace": "pre-wrap",
+            }
+          }
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Views Todos 1`] = `
+<div
+  className="pure-g css-d1ao1r "
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="pure-u-1 css-d1ao1r "
+  >
     <div
       className="pure-g css-d1ao1r "
     >

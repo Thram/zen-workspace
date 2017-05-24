@@ -69,6 +69,7 @@ Creates production release at `./dist`
 
 # Recommended Tools: 
 
+- [Redux DevTools Chrome Extension](http://extension.remotedev.io/)
 - [VSCode](https://code.visualstudio.com/)
 - [VSCode Plugins](https://github.com/viatsko/awesome-vscode)
 

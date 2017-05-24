@@ -1,13 +1,19 @@
 import React from 'react';
 
-const FlatButton = ({ children, onClick, style = {} }) => (
+const FlatButton = ({ children, expand, onClick, style = {} }) => (
   <a
     role="button"
     tabIndex="0"
     onClick={onClick}
-    style={{ width: '100%', display: 'flex', alignItems: 'center', ...style }}
+    style={{
+      width: expand ? '100%' : 'auto',
+      cursor: 'pointer',
+      display: 'inline-block',
+    }}
   >
-    {children}
+    <div style={{ display: 'flex', alignItems: 'center', ...style }}>
+      {children}
+    </div>
   </a>
 );
 

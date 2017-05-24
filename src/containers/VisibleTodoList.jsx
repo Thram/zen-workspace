@@ -1,10 +1,13 @@
 import { connect } from 'react-redux';
 import { toggleTodo } from '../actions';
 import TodoList from '../components/TodoList';
+import { FILTER_TYPES } from '../constants';
+
+const { active: ACTIVE, completed: COMPLETED } = FILTER_TYPES;
 
 const filters = {
-  SHOW_COMPLETED: todos => todos.filter(t => t.completed),
-  SHOW_ACTIVE: todos => todos.filter(t => !t.completed),
+  [COMPLETED]: todos => todos.filter(t => t.completed),
+  [ACTIVE]: todos => todos.filter(t => !t.completed),
 };
 
 const getVisibleTodos = (todos = [], filter) =>
