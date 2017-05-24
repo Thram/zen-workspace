@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots Components Flat Button 1`] = `
+exports[`Storyshots Components • Flat Button 1`] = `
 <div
   className="pure-g css-d1ao1r "
   style={
@@ -67,7 +67,7 @@ exports[`Storyshots Components Flat Button 1`] = `
 </div>
 `;
 
-exports[`Storyshots Components Icon 1`] = `
+exports[`Storyshots Components • Icon 1`] = `
 <div
   className="pure-g css-d1ao1r "
   style={
@@ -140,7 +140,7 @@ exports[`Storyshots Components Icon 1`] = `
 </div>
 `;
 
-exports[`Storyshots Components Link 1`] = `
+exports[`Storyshots Components • Link 1`] = `
 <div
   className="pure-g css-d1ao1r "
   style={
@@ -163,7 +163,7 @@ exports[`Storyshots Components Link 1`] = `
 </div>
 `;
 
-exports[`Storyshots Components Todo List 1`] = `
+exports[`Storyshots Components • Todo List 1`] = `
 <div
   className="pure-g css-d1ao1r "
   style={
@@ -353,7 +353,7 @@ exports[`Storyshots Components Todo List 1`] = `
 </div>
 `;
 
-exports[`Storyshots Containers Add Todo 1`] = `
+exports[`Storyshots Containers • Add Todo 1`] = `
 <div
   className="pure-g css-d1ao1r "
   style={
@@ -400,7 +400,7 @@ exports[`Storyshots Containers Add Todo 1`] = `
 </div>
 `;
 
-exports[`Storyshots Containers Filter 1`] = `
+exports[`Storyshots Containers • Filter 1`] = `
 <div
   className="pure-g css-d1ao1r "
   style={
@@ -450,7 +450,7 @@ exports[`Storyshots Containers Filter 1`] = `
 </div>
 `;
 
-exports[`Storyshots Containers Filter Link 1`] = `
+exports[`Storyshots Containers • Filter Link 1`] = `
 <div
   className="pure-g css-d1ao1r "
   style={
@@ -473,7 +473,7 @@ exports[`Storyshots Containers Filter Link 1`] = `
 </div>
 `;
 
-exports[`Storyshots Containers Navigation 1`] = `
+exports[`Storyshots Containers • Navigation 1`] = `
 <div
   className="pure-g css-d1ao1r "
   style={
@@ -564,7 +564,7 @@ exports[`Storyshots Containers Navigation 1`] = `
 </div>
 `;
 
-exports[`Storyshots Containers Visible Todo List 1`] = `
+exports[`Storyshots Containers • Visible Todo List 1`] = `
 <div
   className="pure-g css-d1ao1r "
   style={
@@ -788,7 +788,7 @@ exports[`Storyshots Containers Visible Todo List 1`] = `
 </div>
 `;
 
-exports[`Storyshots Views Mocks 1`] = `
+exports[`Storyshots Views • Mocks 1`] = `
 <div
   className="pure-g css-d1ao1r "
   style={
@@ -852,7 +852,7 @@ exports[`Storyshots Views Mocks 1`] = `
 </div>
 `;
 
-exports[`Storyshots Views Todos 1`] = `
+exports[`Storyshots Views • Todos 1`] = `
 <div
   className="pure-g css-d1ao1r "
   style={

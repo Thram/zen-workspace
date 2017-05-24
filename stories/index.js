@@ -17,18 +17,18 @@ import Mocks from './MocksStory';
 
 storiesOf('Components', module)
   .addDecorator(withKnobs)
-  .add('Icon', () => <Icon />)
-  .add('Link', () => <Link />)
-  .add('Flat Button', () => <FlatButton />)
-  .add('Todo List', () => <TodoList />);
+  .add('• Icon', () => <Icon />)
+  .add('• Link', () => <Link />)
+  .add('• Flat Button', () => <FlatButton />)
+  .add('• Todo List', () => <TodoList />);
 storiesOf('Containers', module)
   .addDecorator(withKnobs)
-  .add('Navigation', () => <Navigation />)
-  .add('Add Todo', () => <AddTodo />)
-  .add('Filter Link', () => <FilterLink />)
-  .add('Filter', () => <Filter />)
-  .add('Visible Todo List', () => <VisibleTodoList />);
+  .add('• Navigation', () => <Navigation />)
+  .add('• Add Todo', () => <AddTodo />)
+  .add('• Filter Link', () => <FilterLink />)
+  .add('• Filter', () => <Filter />)
+  .add('• Visible Todo List', () => <VisibleTodoList />);
 storiesOf('Views', module)
   .addDecorator(withKnobs)
-  .add('Todos', () => <Todos />)
-  .add('Mocks', () => <Mocks />);
+  .add('• Todos', () => <Todos />)
+  .add('• Mocks', () => <Mocks />);
