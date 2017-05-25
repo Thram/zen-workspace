@@ -4,20 +4,29 @@ import { Group, ButtonGroup, Button } from '../components/pure';
 
 class Mocks extends Component {
   state = {
-    users: [],
+    data: [],
   };
 
   componentDidMount() {
     this.getUsers();
   }
 
-  setData = data => this.setState({ data });
+  setData = (data = []) => this.setState({ data });
 
-  getUsers = () => getUsers().then(this.setData);
+  getUsers = () => {
+    this.setData();
+    getUsers().then(this.setData);
+  };
 
-  getPosts = () => getPosts().then(this.setData);
+  getPosts = () => {
+    this.setData();
+    getPosts().then(this.setData);
+  };
 
-  getAlbums = () => getAlbums().then(this.setData);
+  getAlbums = () => {
+    this.setData();
+    getAlbums().then(this.setData);
+  };
 
   render = () => (
     <Group container>
@@ -29,7 +38,9 @@ class Mocks extends Component {
         </ButtonGroup>
       </Group>
       <pre style={{ whiteSpace: 'pre-wrap' }}>
-        {JSON.stringify(this.state.data)}
+        {this.state.data.length > 0
+          ? JSON.stringify(this.state.data)
+          : 'Loading...'}
       </pre>
     </Group>
   );

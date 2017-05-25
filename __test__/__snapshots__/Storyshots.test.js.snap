@@ -1,5 +1,576 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Storyshots Addons • Info 1`] = `
+<div>
+  <div
+    style={
+      Object {
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <button
+      className="pure-button  "
+      onClick={[Function]}
+      type="button"
+    >
+      Click Me!
+    </button>
+  </div>
+  <a
+    onClick={[Function]}
+    style={
+      Object {
+        "background": "#28c",
+        "borderRadius": "0 0 0 5px",
+        "color": "#fff",
+        "cursor": "pointer",
+        "display": "block",
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "padding": "5px 15px",
+        "position": "fixed",
+        "right": 0,
+        "textDecoration": "none",
+        "top": 0,
+      }
+    }
+  >
+    Show Info
+  </a>
+  <div
+    style={
+      Object {
+        "background": "white",
+        "bottom": 0,
+        "display": "none",
+        "left": 0,
+        "overflow": "auto",
+        "padding": "0 40px",
+        "position": "fixed",
+        "right": 0,
+        "top": 0,
+      }
+    }
+  >
+    <a
+      onClick={[Function]}
+      style={
+        Object {
+          "background": "#28c",
+          "borderRadius": "0 0 0 5px",
+          "color": "#fff",
+          "cursor": "pointer",
+          "display": "block",
+          "fontFamily": "sans-serif",
+          "fontSize": "12px",
+          "padding": "5px 15px",
+          "position": "fixed",
+          "right": 0,
+          "textDecoration": "none",
+          "top": 0,
+        }
+      }
+    >
+      ×
+    </a>
+    <div
+      style={undefined}
+    >
+      <div
+        style={
+          Object {
+            "WebkitFontSmoothing": "antialiased",
+            "color": "#444",
+            "fontFamily": "
+              -apple-system, \\".SFNSText-Regular\\", \\"San Francisco\\", \\"Roboto\\",
+              \\"Segoe UI\\", \\"Helvetica Neue\\", \\"Lucida Grande\\", sans-serif
+            ",
+            "fontSize": "15px",
+            "fontWeight": 300,
+            "lineHeight": 1.45,
+          }
+        }
+      >
+        <div
+          style={
+            Object {
+              "borderBottom": "1px solid #eee",
+              "marginBottom": 10,
+              "paddingTop": 10,
+            }
+          }
+        >
+          <h1
+            style={
+              Object {
+                "fontSize": "35px",
+                "margin": 0,
+                "padding": 0,
+              }
+            }
+          >
+            Addons
+          </h1>
+          <h2
+            style={
+              Object {
+                "fontSize": "22px",
+                "fontWeight": 400,
+                "margin": "0 0 10px 0",
+                "padding": 0,
+              }
+            }
+          >
+            • Info
+          </h2>
+        </div>
+        <div
+          style={
+            Object {
+              "marginBottom": 0,
+            }
+          }
+        >
+          <p
+            style={
+              Object {
+                "WebkitFontSmoothing": "antialiased",
+                "color": "#444",
+                "fontFamily": "
+                  -apple-system, \\".SFNSText-Regular\\", \\"San Francisco\\", \\"Roboto\\",
+                  \\"Segoe UI\\", \\"Helvetica Neue\\", \\"Lucida Grande\\", sans-serif
+                ",
+                "fontSize": "15px",
+              }
+            }
+          >
+            This is the basic usage of the 
+            <code>
+              info addon
+            </code>
+            . Don’t forget to define your 
+            <code>
+              propTypes
+            </code>
+             .
+          </p>
+        </div>
+        <div>
+          <h1
+            style={
+              Object {
+                "borderBottom": "1px solid #EEE",
+                "fontSize": "25px",
+                "margin": "20px 0 0 0",
+                "padding": "0 0 5px 0",
+              }
+            }
+          >
+            Story Source
+          </h1>
+          <pre
+            style={
+              Object {
+                "backgroundColor": "#fafafa",
+                "fontFamily": "Menlo, Monaco, \\"Courier New\\", monospace",
+                "fontSize": ".88em",
+                "lineHeight": 1.5,
+                "overflowX": "scroll",
+                "padding": ".5rem",
+              }
+            }
+          >
+            <div>
+              <div
+                style={
+                  Object {
+                    "paddingLeft": 18,
+                    "paddingRight": 3,
+                  }
+                }
+              >
+                <span
+                  style={
+                    Object {
+                      "color": "#777",
+                    }
+                  }
+                >
+                  &lt;
+                  Button
+                </span>
+                <span>
+                  <span>
+                     
+                    <span
+                      style={Object {}}
+                    >
+                      onClick
+                    </span>
+                    <span>
+                      =
+                      <span
+                        style={Object {}}
+                      >
+                        <span>
+                          <span
+                            style={
+                              Object {
+                                "color": "#170",
+                              }
+                            }
+                          >
+                            Button_Clicked()
+                          </span>
+                        </span>
+                      </span>
+                    </span>
+                    
+                  </span>
+                </span>
+                <span
+                  style={
+                    Object {
+                      "color": "#777",
+                    }
+                  }
+                >
+                  &gt;
+                </span>
+              </div>
+              <div
+                style={
+                  Object {
+                    "paddingLeft": 33,
+                    "paddingRight": 3,
+                  }
+                }
+              >
+                <span
+                  style={
+                    Object {
+                      "color": "#777",
+                    }
+                  }
+                >
+                  Click Me!
+                </span>
+              </div>
+              <div
+                style={
+                  Object {
+                    "paddingLeft": 18,
+                    "paddingRight": 3,
+                  }
+                }
+              >
+                <span
+                  style={
+                    Object {
+                      "color": "#777",
+                    }
+                  }
+                >
+                  &lt;/
+                  Button
+                  &gt;
+                </span>
+              </div>
+            </div>
+          </pre>
+        </div>
+        <div>
+          <h1
+            style={
+              Object {
+                "borderBottom": "1px solid #EEE",
+                "fontSize": "25px",
+                "margin": "20px 0 0 0",
+                "padding": "0 0 5px 0",
+              }
+            }
+          >
+            Prop Types
+          </h1>
+          <div>
+            <h2
+              style={
+                Object {
+                  "margin": "20px 0 0 0",
+                }
+              }
+            >
+              "
+              Button
+              " Component
+            </h2>
+            <table
+              style={
+                Object {
+                  "borderCollapse": "separate",
+                  "borderSpacing": "10px 5px",
+                  "marginLeft": -10,
+                }
+              }
+            >
+              <thead>
+                <tr>
+                  <th>
+                    property
+                  </th>
+                  <th>
+                    propType
+                  </th>
+                  <th>
+                    required
+                  </th>
+                  <th>
+                    default
+                  </th>
+                  <th>
+                    description&gt;
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    active
+                  </td>
+                  <td>
+                    bool
+                  </td>
+                  <td>
+                    no
+                  </td>
+                  <td>
+                    <span>
+                      <span
+                        style={
+                          Object {
+                            "color": "#a11",
+                          }
+                        }
+                      >
+                        false
+                      </span>
+                    </span>
+                  </td>
+                  <td />
+                </tr>
+                <tr>
+                  <td>
+                    className
+                  </td>
+                  <td>
+                    string
+                  </td>
+                  <td>
+                    no
+                  </td>
+                  <td>
+                    <span
+                      style={
+                        Object {
+                          "color": "#22a",
+                          "wordBreak": "break-word",
+                        }
+                      }
+                    >
+                      "
+                      
+                      "
+                    </span>
+                  </td>
+                  <td />
+                </tr>
+                <tr>
+                  <td>
+                    disabled
+                  </td>
+                  <td>
+                    bool
+                  </td>
+                  <td>
+                    no
+                  </td>
+                  <td>
+                    <span>
+                      <span
+                        style={
+                          Object {
+                            "color": "#a11",
+                          }
+                        }
+                      >
+                        false
+                      </span>
+                    </span>
+                  </td>
+                  <td />
+                </tr>
+                <tr>
+                  <td>
+                    hidden
+                  </td>
+                  <td>
+                    bool
+                  </td>
+                  <td>
+                    no
+                  </td>
+                  <td>
+                    <span>
+                      <span
+                        style={
+                          Object {
+                            "color": "#a11",
+                          }
+                        }
+                      >
+                        false
+                      </span>
+                    </span>
+                  </td>
+                  <td />
+                </tr>
+                <tr>
+                  <td>
+                    hover
+                  </td>
+                  <td>
+                    bool
+                  </td>
+                  <td>
+                    no
+                  </td>
+                  <td>
+                    <span>
+                      <span
+                        style={
+                          Object {
+                            "color": "#a11",
+                          }
+                        }
+                      >
+                        false
+                      </span>
+                    </span>
+                  </td>
+                  <td />
+                </tr>
+                <tr>
+                  <td>
+                    selected
+                  </td>
+                  <td>
+                    bool
+                  </td>
+                  <td>
+                    no
+                  </td>
+                  <td>
+                    <span>
+                      <span
+                        style={
+                          Object {
+                            "color": "#a11",
+                          }
+                        }
+                      >
+                        false
+                      </span>
+                    </span>
+                  </td>
+                  <td />
+                </tr>
+                <tr>
+                  <td>
+                    size
+                  </td>
+                  <td>
+                    string
+                  </td>
+                  <td>
+                    no
+                  </td>
+                  <td>
+                    -
+                  </td>
+                  <td />
+                </tr>
+                <tr>
+                  <td>
+                    submit
+                  </td>
+                  <td>
+                    bool
+                  </td>
+                  <td>
+                    no
+                  </td>
+                  <td>
+                    <span>
+                      <span
+                        style={
+                          Object {
+                            "color": "#a11",
+                          }
+                        }
+                      >
+                        false
+                      </span>
+                    </span>
+                  </td>
+                  <td />
+                </tr>
+                <tr>
+                  <td>
+                    type
+                  </td>
+                  <td>
+                    string
+                  </td>
+                  <td>
+                    no
+                  </td>
+                  <td>
+                    -
+                  </td>
+                  <td />
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Addons • Knobs 1`] = `
+<div
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "#5CACC4",
+      "borderRadius": "50%",
+      "display": "flex",
+      "height": "100px",
+      "margin": "1rem",
+      "padding": "1rem",
+      "textAlign": "center",
+      "width": "100px",
+    }
+  }
+>
+  Edit my Styles!!
+</div>
+`;
+
 exports[`Storyshots Components • Flat Button 1`] = `
 <div
   className="pure-g css-d1ao1r "
@@ -845,7 +1416,9 @@ exports[`Storyshots Views • Mocks 1`] = `
               "whiteSpace": "pre-wrap",
             }
           }
-        />
+        >
+          Loading...
+        </pre>
       </div>
     </div>
   </div>
