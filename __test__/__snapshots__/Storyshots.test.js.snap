@@ -133,19 +133,7 @@ exports[`Storyshots Addons • Info 1`] = `
             }
           }
         >
-          <p
-            style={
-              Object {
-                "WebkitFontSmoothing": "antialiased",
-                "color": "#444",
-                "fontFamily": "
-                  -apple-system, \\".SFNSText-Regular\\", \\"San Francisco\\", \\"Roboto\\",
-                  \\"Segoe UI\\", \\"Helvetica Neue\\", \\"Lucida Grande\\", sans-serif
-                ",
-                "fontSize": "15px",
-              }
-            }
-          >
+          <p>
             This is the basic usage of the 
             <code>
               info addon
