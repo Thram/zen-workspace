@@ -87,5 +87,10 @@
     "react-router-dom": "^4.1.1",
     "redux": "^3.6.0",
     "whatwg-fetch": "^2.0.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   }
 }
