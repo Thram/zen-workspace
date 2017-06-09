@@ -89,6 +89,7 @@ Creates production release at `./dist`
 - [Reduce](https://medium.com/javascript-scene/reduce-composing-software-fe22f0c39a1d)
 - [Functors & Categories](https://medium.com/javascript-scene/functors-categories-61e031bac53f)
 - [Composing Software: An Introduction](https://medium.com/javascript-scene/composing-software-an-introduction-27b72500d6ea)
+- [Functional Mixins](https://medium.com/javascript-scene/functional-mixins-composing-software-ffb66d5e731c)
 
 ### TDD
 - [TDD the RITE Way](https://medium.com/javascript-scene/tdd-the-rite-way-53c9b46f45e3)
@@ -96,3 +97,6 @@ Creates production release at `./dist`
 ### Others
 - [Elements of JavaScript Style](https://medium.com/javascript-scene/elements-of-javascript-style-caa8821cb99f)
 - [Arrow Functions](https://medium.com/javascript-scene/familiarity-bias-is-holding-you-back-its-time-to-embrace-arrow-functions-3d37e1a9bb75)
+
+### Videos
+- [Functional programming in JavaScript](https://www.youtube.com/playlist?list=PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84)
