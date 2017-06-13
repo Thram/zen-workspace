@@ -20,6 +20,7 @@ exports[`Storyshots Addons • Info 1`] = `
   </div>
   <a
     onClick={[Function]}
+    role="button"
     style={
       Object {
         "background": "#28c",
@@ -36,6 +37,7 @@ exports[`Storyshots Addons • Info 1`] = `
         "top": 0,
       }
     }
+    tabIndex="0"
   >
     Show Info
   </a>
@@ -56,6 +58,7 @@ exports[`Storyshots Addons • Info 1`] = `
   >
     <a
       onClick={[Function]}
+      role="button"
       style={
         Object {
           "background": "#28c",
@@ -72,6 +75,7 @@ exports[`Storyshots Addons • Info 1`] = `
           "top": 0,
         }
       }
+      tabIndex="0"
     >
       ×
     </a>
@@ -82,6 +86,10 @@ exports[`Storyshots Addons • Info 1`] = `
         style={
           Object {
             "WebkitFontSmoothing": "antialiased",
+            "backgroundColor": "#fff",
+            "border": "1px solid #eee",
+            "borderRadius": "2px",
+            "boxShadow": "0px 2px 3px rgba(0, 0, 0, 0.05)",
             "color": "#444",
             "fontFamily": "
               -apple-system, \\".SFNSText-Regular\\", \\"San Francisco\\", \\"Roboto\\",
@@ -90,6 +98,8 @@ exports[`Storyshots Addons • Info 1`] = `
             "fontSize": "15px",
             "fontWeight": 300,
             "lineHeight": 1.45,
+            "marginTop": "50px",
+            "padding": "20px 40px 40px",
           }
         }
       >
@@ -133,15 +143,65 @@ exports[`Storyshots Addons • Info 1`] = `
             }
           }
         >
-          <p>
+          <p
+            style={
+              Object {
+                "WebkitFontSmoothing": "antialiased",
+                "color": "#444",
+                "fontFamily": "
+                  -apple-system, \\".SFNSText-Regular\\", \\"San Francisco\\", \\"Roboto\\",
+                  \\"Segoe UI\\", \\"Helvetica Neue\\", \\"Lucida Grande\\", sans-serif
+                ",
+                "fontSize": "15px",
+              }
+            }
+          >
             This is the basic usage of the 
-            <code>
-              info addon
-            </code>
+            <pre
+              className=""
+              style={
+                Object {
+                  "backgroundColor": "#fafafa",
+                  "fontFamily": "Menlo, Monaco, \\"Courier New\\", monospace",
+                  "lineHeight": 1.5,
+                  "overflowX": "scroll",
+                  "padding": ".5rem",
+                }
+              }
+            >
+              <code
+                className=""
+                style={
+                  Object {
+                    "backgroundColor": "#fafafa",
+                    "fontFamily": "Menlo, Monaco, \\"Courier New\\", monospace",
+                  }
+                }
+              />
+            </pre>
             . Don’t forget to define your 
-            <code>
-              propTypes
-            </code>
+            <pre
+              className=""
+              style={
+                Object {
+                  "backgroundColor": "#fafafa",
+                  "fontFamily": "Menlo, Monaco, \\"Courier New\\", monospace",
+                  "lineHeight": 1.5,
+                  "overflowX": "scroll",
+                  "padding": ".5rem",
+                }
+              }
+            >
+              <code
+                className=""
+                style={
+                  Object {
+                    "backgroundColor": "#fafafa",
+                    "fontFamily": "Menlo, Monaco, \\"Courier New\\", monospace",
+                  }
+                }
+              />
+            </pre>
              .
           </p>
         </div>
