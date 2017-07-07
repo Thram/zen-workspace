@@ -6,19 +6,6 @@ import { action } from '@storybook/addon-actions';
 import { setOptions } from '@storybook/addon-options';
 import infoAddon from '@storybook/addon-info';
 
-import TodoList from './TodoListStory';
-import FlatButton from './FlatButtonStory';
-import Navigation from './NavigationStory';
-import AddTodo from './AddTodoStory';
-import FilterLink from './FilterLinkStory';
-import Icon from './IconStory';
-import Link from './LinkStory';
-import Filter from './FilterStory';
-import VisibleTodoList from './VisibleTodoListStory';
-import Todos from './TodosStory';
-import Mocks from './MocksStory';
-import { Button } from '../src/components/pure';
-
 setOptions({
   name: 'Starter Kit: React',
   url: 'https://github.com/TouchtechLtd/starter-kit-react',
@@ -33,10 +20,10 @@ storiesOf('Addons', module)
   .addWithInfo(
     '• Info',
     "This is the basic usage of the `info addon`. Don't forget to define your `propTypes` .",
-    () => <Button onClick={action('Button Clicked')}>Click Me!</Button>,
+    () => <button onClick={action('Button Clicked')}>Click Me!</button>,
   )
-  .add('• Knobs', () => (
-    <div
+  .add('• Knobs', () =>
+    (<div
       style={object('style', {
         margin: '1rem',
         display: 'flex',
@@ -50,22 +37,5 @@ storiesOf('Addons', module)
       })}
     >
       Edit my Styles!!
-    </div>
-  ));
-storiesOf('Components', module)
-  .addDecorator(withKnobs)
-  .add('• Icon', () => <Icon />)
-  .add('• Link', () => <Link />)
-  .add('• Flat Button', () => <FlatButton />)
-  .add('• Todo List', () => <TodoList />);
-storiesOf('Containers', module)
-  .addDecorator(withKnobs)
-  .add('• Navigation', () => <Navigation />)
-  .add('• Add Todo', () => <AddTodo />)
-  .add('• Filter Link', () => <FilterLink />)
-  .add('• Filter', () => <Filter />)
-  .add('• Visible Todo List', () => <VisibleTodoList />);
-storiesOf('Views', module)
-  .addDecorator(withKnobs)
-  .add('• Todos', () => <Todos />)
-  .add('• Mocks', () => <Mocks />);
+    </div>),
+  );

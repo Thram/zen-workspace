@@ -8,35 +8,12 @@ html {
 *:after {
   box-sizing: inherit;
 }
-
-.material-icons {
-  cursor: default;
-  font-family: 'Material Icons';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  /* Preferred icon size */
-  display: inline-block;
-  line-height: 1;
-  text-transform: none;
-  letter-spacing: normal;
-  word-wrap: normal;
-  white-space: nowrap;
-  direction: ltr;
-  /* Support for all WebKit browsers. */
-  -webkit-font-smoothing: antialiased;
-  /* Support for Safari and Chrome. */
-  text-rendering: optimizeLegibility;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  /* Support for Firefox. */
-  -moz-osx-font-smoothing: grayscale;
-  -moz-user-select: none;
-  /* Support for IE. */
-  font-feature-settings: 'liga';
-  -ms-user-select: none;
-  /* Safari */
-  /* Konqueror HTML */
-  -khtml-user-select: none;
-  user-select: none;
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
 }

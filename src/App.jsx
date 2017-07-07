@@ -2,38 +2,24 @@
  * Created by thram on 21/01/17.
  */
 import React from 'react';
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-// Server rendering support
-// import { BrowserRouter as Router } from 'react-router-dom';
-import { HashRouter as Router } from 'react-router-dom';
-import { Group } from './components/pure';
-import Navigation from './containers/Navigation';
-import { Todos, Mocks, Icons } from './views';
-import Renderer from './Renderer';
-import todoApp from './reducers';
+import { HashRouter as Router, Route } from 'react-router-dom';
+import { webFrame } from 'electron';
+import glamorous from 'glamorous';
+import Main from './containers/Main';
+
 import './styles/main.css';
 
-const store = createStore(todoApp);
-/**
- * Created by thram on 21/01/17.
- */
+webFrame.setZoomLevelLimits(1, 1);
 
-const routes = [
-  { title: 'Todos', path: '/', component: Todos },
-  { title: 'Mocks', path: '/mocks', component: Mocks },
-  { title: 'Icons', path: '/icons', component: Icons },
-];
+const Container = glamorous.div({ width: '100%', height: '100%', position: 'relative' });
 
-const App = () => (
-  <Provider store={store}>
-    <Router>
-      <Group container style={{ padding: '2rem' }}>
-        <Navigation routes={routes} title="ToDo List" />
-        <Renderer routes={routes} />
-      </Group>
-    </Router>
-  </Provider>
-);
+const routes = [{ path: '/', component: Main }];
+
+const App = () =>
+  (<Router>
+    <Container>
+      {routes.map(props => <Route key={props.path} exact {...props} />)}
+    </Container>
+  </Router>);
 
 export default App;

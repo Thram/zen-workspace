@@ -23,7 +23,7 @@ const getRule = (test, use) => ({
 
 const INDEX_HTML_SETUP = {
   template: 'node_modules/html-webpack-template/index.ejs',
-  title: 'Starter Kit React',
+  title: 'Workspace',
   appMountId: 'app',
   meta: [
     {
@@ -39,8 +39,7 @@ const plugins = [
   new optimize.CommonsChunkPlugin({
     name: 'vendor',
     // this assumes your vendor imports exist in the node_modules directory
-    minChunks: module =>
-      module.context && module.context.indexOf('node_modules') !== -1,
+    minChunks: module => module.context && module.context.indexOf('node_modules') !== -1,
   }),
   new optimize.CommonsChunkPlugin({
     name: 'manifest',
@@ -51,12 +50,7 @@ const plugins = [
     children: true,
     minChunks: 4,
   }),
-  new HtmlwebpackPlugin({
-    ...INDEX_HTML_SETUP,
-    inject: false,
-    chunks: ['vendor', 'manifest', 'app'],
-    filename: `${__dirname}/dist/index.html`,
-  }),
+  new HtmlwebpackPlugin(INDEX_HTML_SETUP),
   new ExtractTextPlugin('styles.css'),
 ];
 
@@ -108,16 +102,10 @@ const module = {
         },
       },
     ]),
-    getRule(
-      /\.(jpe?g|png|gif|svg|webp)$/i,
-      'file-loader?name=images/[name].[ext]',
-    ),
+    getRule(/\.(jpe?g|png|gif|svg|webp)$/i, 'file-loader?name=images/[name].[ext]'),
     getRule(/\.(mp4|webm|ogv)$/i, 'file-loader?name=video/[name].[ext]'),
     getRule(/\.(mp3|ogg|wav)$/i, 'file-loader?name=audio/[name].[ext]'),
-    getRule(
-      /\.(eot|otf|ttf|woff|woff2)$/i,
-      'file-loader?name=fonts/[name].[ext]',
-    ),
+    getRule(/\.(eot|otf|ttf|woff|woff2)$/i, 'file-loader?name=fonts/[name].[ext]'),
     getRule(
       /\.css$/i,
       isProd
@@ -167,6 +155,7 @@ export default function (env = {}) {
     entry: {
       app: `${__dirname}/src/index`,
     },
+    target: 'electron-renderer',
     output: {
       path: `${__dirname}/dist`,
       filename: '[name].[chunkhash].js',
