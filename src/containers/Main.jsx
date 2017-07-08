@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import glamorous from 'glamorous';
 import { colors } from 'material-ui';
+import IconButton from 'material-ui/IconButton';
 import SettingsIcon from 'material-ui-icons/Settings';
-import { htmlMetadata } from '../api';
-import { addApp, updateApp, selectApp } from '../actions/apps';
+import { addApp, selectApp } from '../actions/apps';
 import AddWebApp from '../components/AddWebApp';
 import Workspace from './Workspace';
 import Settings from './Settings';
+import Edit from './Edit';
 
 const Container = glamorous.div({ width: '100%', height: '100%', display: 'flex' });
 const BottomActions = glamorous.div({
@@ -53,6 +54,7 @@ class Main extends Component {
               tabIndex={-1}
               key={`avatar_${app.id}`}
               onClick={() => this.props.selectApp(app.id)}
+              onContextMenu={() => this.setState({ editApp: app })}
               style={{
                 width: '50px',
                 height: '50px',
@@ -69,16 +71,20 @@ class Main extends Component {
           )}
         </div>
         <BottomActions>
-          <SettingsIcon
+          <IconButton
+            color="contrast"
             onClick={() => this.setState({ showSettings: !this.state.showSettings })}
-            style={{ marginBottom: '1rem' }}
-          />
+          >
+            <SettingsIcon />
+          </IconButton>
           <AddWebApp onAdd={this.props.addApp} />
         </BottomActions>
       </Dashboard>
       <Content>
         <Workspace active={this.state.active} />
         {this.state.showSettings && <Settings />}
+        {this.state.editApp &&
+          <Edit app={this.state.editApp} onClose={() => this.setState({ editApp: undefined })} />}
       </Content>
     </Container>);
 }
@@ -87,9 +93,6 @@ export default connect(
   ({ apps }) => ({ apps }),
   dispatch => ({
     selectApp: id => dispatch(selectApp(id)),
-    addApp: (url) => {
-      dispatch(addApp(url));
-      htmlMetadata(url).then(meta => dispatch(updateApp({ url, meta })));
-    },
+    addApp: url => dispatch(addApp(url)),
   }),
 )(Main);

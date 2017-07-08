@@ -31,12 +31,11 @@ class WebView extends Component {
   };
 
   render = () => {
-    const { innerRef, onDomReady, src, active, style } = this.props;
+    const { innerRef, onDomReady, active, style } = this.props;
     return (
       <ElectronWebView
         onDidGetRedirectRequest={() => this.webView && this.setupExtentions()}
         onIpcMessage={({ channel }) => console.log('ipc', channel)}
-        onPageTitleUpdated={ev => console.log(ev)}
         onDomReady={(ev) => {
           this.webView = ev.currentTarget;
           this.setupExtentions();
@@ -44,7 +43,7 @@ class WebView extends Component {
           if (innerRef) innerRef(this.webView);
           if (onDomReady) onDomReady(ev);
         }}
-        partition={`persist:${USER}_${src}`}
+        partition={`persist:${USER}`}
         style={{
           height: '100%',
           width: '100%',
@@ -58,7 +57,7 @@ class WebView extends Component {
           zIndex: active ? 10 : 0,
           ...style,
         }}
-        {...omit(this.props, ['style', 'active', 'innerRef', 'extensions'])}
+        {...omit(this.props, ['style', 'active', 'innerRef', 'extensions', 'presist'])}
       />
     );
   };

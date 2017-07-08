@@ -29,7 +29,6 @@ const EVENTS = [
 const HANDLERS = EVENTS.map(event => camelCase(`on-${event}`));
 
 const EVENTS_HANDLERS = zipObject(HANDLERS, EVENTS);
-console.log('file:///Users/Thram/Development/Workspace/Desktop/workspace/injector.js');
 const tagPropTypes = {
   autosize: React.PropTypes.bool,
   disablewebsecurity: React.PropTypes.bool,
@@ -60,7 +59,6 @@ export default class WebView extends React.Component {
     this.webview = findDOMNode(this);
     this.bindEvents();
     this.assignMethods();
-    console.log(`file://${__dirname}/injector.js`);
   }
 
   bindEvents = () =>

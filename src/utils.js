@@ -12,9 +12,14 @@ const normalizeUrl = url => (checkAbsoluteUrl(url) ? url : `https://${url}`);
 
 const getMetaSchemaOrg = ({ general = {}, schemaOrg = {} }) => ({
   ...general,
+  image: [],
   ...get(schemaOrg, 'items[0].properties', {}),
 });
-const getMetaOpenGraph = ({ general = {}, openGraph = {} }) => ({ ...general, ...openGraph });
+const getMetaOpenGraph = ({ general = {}, openGraph = {} }) => ({
+  ...general,
+  image: [],
+  ...openGraph,
+});
 
 const normalizeMeta = (meta, url) => {
   const normalized = meta.schemaOrg ? getMetaSchemaOrg(meta) : getMetaOpenGraph(meta);

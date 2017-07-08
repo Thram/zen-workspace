@@ -9,6 +9,13 @@ import TextField from 'material-ui/TextField';
 import IconButton from 'material-ui/IconButton';
 import { normalizeUrl } from '../utils';
 
+// Slack: https://[channel].slack.com
+// Trello: https://trello.com
+// Harvest: https://[company].harvestapp.com
+// Inbox: https://inbox.google.com
+// GDrive: https://drive.google.com/drive/my-drive
+// Calendar: https://www.google.com/calendar
+
 const Content = glamorous(CardContent)({
   display: 'flex',
   alignItems: 'center',

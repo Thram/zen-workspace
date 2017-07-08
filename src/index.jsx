@@ -9,11 +9,12 @@ import { persistStore, autoRehydrate } from 'redux-persist';
 import logger from 'redux-logger';
 import { createStore, compose, applyMiddleware } from 'redux';
 import { MuiThemeProvider } from 'material-ui/styles';
+import thunk from 'redux-thunk';
 
 import reducers from './reducers';
 import App from './App';
 
-const store = compose(autoRehydrate(), applyMiddleware(logger))(createStore)(reducers);
+const store = compose(autoRehydrate(), applyMiddleware(thunk, logger))(createStore)(reducers);
 persistStore(store);
 
 render(
