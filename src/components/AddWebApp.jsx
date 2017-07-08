@@ -9,7 +9,6 @@ import TextField from 'material-ui/TextField';
 import IconButton from 'material-ui/IconButton';
 import { normalizeUrl } from '../utils';
 
-const Container = glamorous.div({ position: 'absolute', bottom: '1rem' });
 const Content = glamorous(CardContent)({
   display: 'flex',
   alignItems: 'center',
@@ -59,7 +58,7 @@ class AddWebApp extends Component {
   checkFocus = () => this.state.showCard && this.input.focus();
 
   render = () =>
-    (<Container>
+    (<div>
       <Button fab color="primary" onClick={this.toggleCard}>
         <AddIcon />
       </Button>
@@ -82,7 +81,7 @@ class AddWebApp extends Component {
             <CardActions />
           </Card>)}
       </Motion>
-    </Container>);
+    </div>);
 }
 
 export default AddWebApp;

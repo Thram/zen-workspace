@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { find } from 'lodash';
 import { connect } from 'react-redux';
 import glamorous from 'glamorous';
 import WebView from '../components/WebView';
@@ -12,6 +13,8 @@ class Workspace extends Component {
 
   setRef = id => (ref) => {
     this.apps[id] = ref;
+
+    // console.log(ref.getUserAgent());
     // Mobile User Agent (TODO: Change the User Agent depending the size of the screen)
     // ref.setUserAgent(
     //   'Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K)
@@ -21,18 +24,23 @@ class Workspace extends Component {
 
   apps = {};
 
-  render = () =>
-    (<Container>
-      {this.props.apps.map(({ id, url, selected }) =>
-        (<WebView
-          key={`webview_${id}`}
-          id={id}
-          innerRef={this.setRef(id)}
-          src={url}
-          active={selected}
-        />),
-      )}
-    </Container>);
+  render = () => {
+    const { apps, extensions } = this.props;
+    return (
+      <Container>
+        {apps.map(({ id, url, selected }) =>
+          (<WebView
+            extensions={extensions.enabled.map(extId => find(extensions.list, { id: extId }))}
+            key={`webview_${id}`}
+            id={id}
+            innerRef={this.setRef(id)}
+            src={url}
+            active={selected}
+          />),
+        )}
+      </Container>
+    );
+  };
 }
 
-export default connect(({ apps }) => ({ apps }))(Workspace);
+export default connect(({ apps, extensions }) => ({ apps, extensions }))(Workspace);

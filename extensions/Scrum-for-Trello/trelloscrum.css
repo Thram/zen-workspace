@@ -1,0 +1,93 @@
+.list-total {
+  color: #006580;
+  font-size: 16px;
+  font-weight: bold;
+  float: right;
+  margin: 1px 0px 0 0;
+  line-height: 18px;
+}
+.board-header-btns .list-total {
+  /* only targets the board totals */
+  line-height: 30px;
+  color: #60c5f0;
+}
+
+.list-total .cpoints {
+  margin-right: 3px;
+  opacity: 0.5;
+}
+
+.list .list-title h2 {
+  float: none !important;
+  display: inline !important;
+  margin-right: 0 !important;
+  vertical-align: -4px;
+}
+
+.manual .window-main-col p,
+.window-main-col h2 {
+  display: block !important;
+}
+
+.badge-points {
+  background-color: #006580 !important;
+  border-color: #005b72 !important;
+  border-bottom-color: #004b5f !important;
+  color: #e1fafb !important;
+  float: right;
+  text-align: right;
+  background-repeat: no-repeat !important;
+  background-position: 3px 3px !important;
+  padding: 0 4px 0 17px !important;
+  border-radius: 3px;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.picker-consumed,
+.picker {
+  float: left;
+  width: 100%;
+  padding: 5px 0;
+}
+.picker-title {
+  padding-right: 20px;
+}
+
+.points-done-icon {
+  background-position: 0px 3px !important;
+  background-repeat: no-repeat !important;
+  margin-left: 3px;
+}
+.js-points-done:hover > .points-done-icon {
+  background-position: -11px 3px !important;
+}
+
+.point-value {
+  background-color: #006580 !important;
+  border-radius: 3px;
+  padding: 2px 5px !important;
+  margin-right: 5px;
+  font-size: 15px !important;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.badge-points:empty {
+  display: none !important;
+}
+
+.badge-points.consumed {
+  opacity: 0.5;
+}
+.badge:empty {
+  display: none !important;
+}
+
+/* == b4t integration==*/
+#burndownLink .icon-sm {
+  padding: 6px;
+  margin-top: 1px;
+}
+/* == end b4t integration == */

@@ -2,15 +2,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import glamorous from 'glamorous';
 import { colors } from 'material-ui';
-import { remote } from 'electron';
+import SettingsIcon from 'material-ui-icons/Settings';
+import { htmlMetadata } from '../api';
 import { addApp, updateApp, selectApp } from '../actions/apps';
 import AddWebApp from '../components/AddWebApp';
-import Workspace from '../containers/Workspace';
-
-const htmlMetadata = remote.require('html-metadata');
+import Workspace from './Workspace';
+import Settings from './Settings';
 
 const Container = glamorous.div({ width: '100%', height: '100%', display: 'flex' });
-
+const BottomActions = glamorous.div({
+  position: 'absolute',
+  bottom: '1rem',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+});
 const Dashboard = glamorous.div({
   height: '100%',
   padding: '1rem .5rem',
@@ -28,6 +34,7 @@ const Content = glamorous.div({
   height: '100%',
   backgroundColor: colors.blue[300],
   flex: 1,
+  position: 'relative',
   zIndex: 0,
 });
 
@@ -61,10 +68,17 @@ class Main extends Component {
             />),
           )}
         </div>
-        <AddWebApp onAdd={this.props.addApp} />
+        <BottomActions>
+          <SettingsIcon
+            onClick={() => this.setState({ showSettings: !this.state.showSettings })}
+            style={{ marginBottom: '1rem' }}
+          />
+          <AddWebApp onAdd={this.props.addApp} />
+        </BottomActions>
       </Dashboard>
       <Content>
         <Workspace active={this.state.active} />
+        {this.state.showSettings && <Settings />}
       </Content>
     </Container>);
 }
