@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import glamorous from 'glamorous';
 import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
 import Switch from 'material-ui/Switch';
-import { colors } from 'material-ui';
+import { blueGrey } from '../colors';
 import { toggleExtension } from '../actions/extensions';
 
 const Container = glamorous.div({
@@ -14,7 +14,7 @@ const Container = glamorous.div({
   zIndex: '100',
   width: '100%',
   height: '100%',
-  background: colors.blueGrey[100],
+  background: blueGrey(100),
 });
 
 const Settings = ({ extensions, toggle }) =>

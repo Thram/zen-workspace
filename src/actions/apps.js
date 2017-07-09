@@ -1,6 +1,7 @@
 import uuidv5 from 'uuid/v5';
 import { htmlMetadata } from '../api';
-import { normalizeMeta, getRandomColor } from '../utils';
+import { normalizeMeta } from '../utils';
+import { getRandomColor } from '../colors';
 
 const ADD_APP = 'ADD_APP';
 const addApp = url => (dispatch) => {
@@ -14,7 +15,7 @@ const addApp = url => (dispatch) => {
     },
   };
   return htmlMetadata(url).then(
-    meta => dispatch({ ...action, meta: normalizeMeta(meta, url) }),
+    meta => dispatch({ ...action, payload: { ...action.payload, meta: normalizeMeta(meta, url) } }),
     () => dispatch({ ...action, meta: {} }),
   );
 };

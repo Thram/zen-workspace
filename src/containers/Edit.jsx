@@ -7,8 +7,8 @@ import DeleteIcon from 'material-ui-icons/Delete';
 import Card, { CardActions, CardContent } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
-import { colors } from 'material-ui';
 import { updateApp, removeApp } from '../actions/apps';
+import { blueGrey } from '../colors';
 
 const Container = glamorous.div({
   position: 'absolute',
@@ -17,7 +17,7 @@ const Container = glamorous.div({
   zIndex: '100',
   width: '100%',
   height: '100%',
-  background: colors.blueGrey[100],
+  background: blueGrey(100),
 });
 
 class Edit extends Component {

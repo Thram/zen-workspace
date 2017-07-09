@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import glamorous from 'glamorous';
-import { colors } from 'material-ui';
 import IconButton from 'material-ui/IconButton';
 import SettingsIcon from 'material-ui-icons/Settings';
+import { blueGrey, blue } from '../colors';
 import { addApp, selectApp } from '../actions/apps';
 import AddWebApp from '../components/AddWebApp';
+import AppsMenu from '../components/AppsMenu';
 import Workspace from './Workspace';
 import Settings from './Settings';
 import Edit from './Edit';
@@ -21,7 +22,7 @@ const BottomActions = glamorous.div({
 const Dashboard = glamorous.div({
   height: '100%',
   padding: '1rem .5rem',
-  backgroundColor: colors.blueGrey[900],
+  backgroundColor: blueGrey(900),
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -33,7 +34,7 @@ const Dashboard = glamorous.div({
 
 const Content = glamorous.div({
   height: '100%',
-  backgroundColor: colors.blue[300],
+  backgroundColor: blue(300),
   flex: 1,
   position: 'relative',
   zIndex: 0,
@@ -42,34 +43,14 @@ const Content = glamorous.div({
 class Main extends Component {
   state = {};
 
-  bringToFront = id => () => this.setState({ active: id });
-
   render = () =>
     (<Container>
       <Dashboard>
-        <div>
-          {this.props.apps.map(app =>
-            (<div
-              role="button"
-              tabIndex={-1}
-              key={`avatar_${app.id}`}
-              onClick={() => this.props.selectApp(app.id)}
-              onContextMenu={() => this.setState({ editApp: app })}
-              style={{
-                width: '50px',
-                height: '50px',
-                marginBottom: '.5rem',
-                borderRadius: '50%',
-                backgroundSize: 'cover',
-                backgroundRepeat: 'no-repeat',
-                backgroundPosition: 'center',
-                backgroundImage: `url(${app.meta && app.meta.image[0].url})`,
-                backgroundColor: app.color,
-                border: '3px solid white',
-              }}
-            />),
-          )}
-        </div>
+        <AppsMenu
+          apps={this.props.apps}
+          onClick={app => this.props.selectApp(app.id)}
+          onRightClick={app => this.setState({ editApp: app })}
+        />
         <BottomActions>
           <IconButton
             color="contrast"
@@ -81,7 +62,7 @@ class Main extends Component {
         </BottomActions>
       </Dashboard>
       <Content>
-        <Workspace active={this.state.active} />
+        <Workspace />
         {this.state.showSettings && <Settings />}
         {this.state.editApp &&
           <Edit app={this.state.editApp} onClose={() => this.setState({ editApp: undefined })} />}

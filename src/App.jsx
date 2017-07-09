@@ -7,6 +7,7 @@ import { webFrame } from 'electron';
 import glamorous from 'glamorous';
 import Main from './containers/Main';
 
+import './styles/flat-icons.css';
 import './styles/main.css';
 
 webFrame.setZoomLevelLimits(1, 1);

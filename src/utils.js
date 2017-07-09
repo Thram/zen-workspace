@@ -1,5 +1,4 @@
-import { get, isString, isArray, flow, sample } from 'lodash';
-import { colors } from 'material-ui';
+import { get, isString, isArray, flow } from 'lodash';
 
 const processReducer = (reducers, initState = {}) => (state = initState, action) => {
   const reducer = reducers[action.type];
@@ -43,14 +42,10 @@ const getRandomNumber = (factor = 1) => (min = 1, max = 9) =>
     randomInteger => randomInteger * factor,
   )();
 
-const getRandomScaleColor = getRandomNumber(100);
-
-const getRandomColor = () =>
-  flow(
-    () => Object.keys(colors),
-    colorsNames => sample(colorsNames),
-    selectedColor => colors[selectedColor][getRandomScaleColor()],
-  )();
-
-export { processReducer, normalizeUrl, normalizeMeta, getRandomNumber, getRandomColor };
-export default { processReducer, normalizeUrl, normalizeMeta, getRandomNumber, getRandomColor };
+export { processReducer, normalizeUrl, normalizeMeta, getRandomNumber };
+export default {
+  processReducer,
+  normalizeUrl,
+  normalizeMeta,
+  getRandomNumber,
+};

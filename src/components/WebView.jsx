@@ -53,7 +53,7 @@ class WebView extends Component {
           position: 'absolute',
           top: 0,
           left: 0,
-          transition: 'opacity 1s ease',
+          transition: 'opacity .5s ease',
           opacity: active ? 1 : 0,
           zIndex: active ? 10 : 0,
           ...style,
