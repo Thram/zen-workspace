@@ -1,7 +1,8 @@
+import { app } from 'electron';
 import { readdirSync, lstatSync, readFileSync } from 'fs';
 import { join } from 'path';
 
-const EXTENSIONS_FOLDER = `${__dirname}/extensions`;
+const EXTENSIONS_FOLDER = `${app.getAppPath()}/extensions`;
 
 const getDirectories = src =>
   readdirSync(src).filter(file => lstatSync(join(src, file)).isDirectory());

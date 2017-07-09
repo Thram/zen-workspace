@@ -12,6 +12,8 @@ app.on('ready', () => {
     width: Math.round(width * 0.6),
     height: Math.round(height * 0.9),
   });
+  mainWindow.webContents.openDevTools();
+
   const url =
     process.env.NODE_ENV === 'development'
       ? 'http://0.0.0.0:8080'

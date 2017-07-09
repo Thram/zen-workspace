@@ -22,8 +22,11 @@ class WebView extends Component {
       );
       if (applyExtension) {
         this.webView.insertCSS(styles);
-        this.webView.executeJavaScript(scripts, false, () =>
-          console.log(`Extension ${manifest.id} Loaded`),
+        this.webView.executeJavaScript(
+          `window.EXTENSIONS = window.EXTENSIONS ? [].concat(window.EXTENSIONS,"${manifest.id}"): ["${manifest.id}"]; 
+        ${scripts}`,
+          false,
+          () => console.log(`Extension ${manifest.id} Loaded`),
         );
         this.webView.openDevTools();
       }
@@ -34,12 +37,10 @@ class WebView extends Component {
     const { innerRef, onDomReady, active, style } = this.props;
     return (
       <ElectronWebView
-        onDidGetRedirectRequest={() => this.webView && this.setupExtentions()}
         onIpcMessage={({ channel }) => console.log('ipc', channel)}
         onDomReady={(ev) => {
           this.webView = ev.currentTarget;
           this.setupExtentions();
-
           if (innerRef) innerRef(this.webView);
           if (onDomReady) onDomReady(ev);
         }}

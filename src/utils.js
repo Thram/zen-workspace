@@ -1,4 +1,4 @@
-import { get, isString, flow, sample } from 'lodash';
+import { get, isString, isArray, flow, sample } from 'lodash';
 import { colors } from 'material-ui';
 
 const processReducer = (reducers, initState = {}) => (state = initState, action) => {
@@ -23,9 +23,15 @@ const getMetaOpenGraph = ({ general = {}, openGraph = {} }) => ({
 
 const normalizeMeta = (meta, url) => {
   const normalized = meta.schemaOrg ? getMetaSchemaOrg(meta) : getMetaOpenGraph(meta);
-  normalized.image = normalized.image.map(
-    value => (isString(value) ? { url: checkAbsoluteUrl(value) ? value : url + value } : value),
-  );
+  normalized.image = isArray(normalized.image)
+    ? normalized.image.map(
+        value => (isString(value) ? { url: checkAbsoluteUrl(value) ? value : url + value } : value),
+      )
+    : [
+      isString(normalized.image)
+          ? { url: checkAbsoluteUrl(normalized.image) ? normalized.image : url + normalized.image }
+          : normalized.image,
+    ];
   return normalized;
 };
 

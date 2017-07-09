@@ -1,4 +1,5 @@
 // Messages Creators
+const { getBase64Image } = electron.remote.require('./tools');
 
 function sendNotification(data) {
   return Object.assign({ type: 'NOTIFICATION', id: WORKSPACE_APP_ID }, data);
@@ -6,7 +7,11 @@ function sendNotification(data) {
 
 // Fix problem with Extensions
 
-chrome = { extension: { getURL: file => `./${file}` } };
+chrome = {
+  extension: {
+    getURL: file => getBase64Image(file, 'extensions/**/'),
+  },
+};
 
 // Catch Notifications
 function setNotificationCallback(callback) {

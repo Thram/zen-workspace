@@ -1,6 +1,7 @@
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import { camelCase, zipObject, forEach } from 'lodash';
+import { getPath } from '../api';
 
 const EVENTS = [
   'load-commit',
@@ -83,6 +84,6 @@ export default class WebView extends React.Component {
       ref={ref => (this.view = ref)}
       is
       {...this.tagProps()}
-      preload={'file:///Users/Thram/Development/Workspace/Desktop/workspace/injector.js'}
+      preload={`file:///${getPath('injector.js')}`}
     />);
 }
