@@ -1,9 +1,4 @@
-// Messages Creators
-const { getBase64Image } = electron.remote.require('./tools');
-
-function sendNotification(data) {
-  return Object.assign({ type: 'NOTIFICATION', id: WORKSPACE_APP_ID }, data);
-}
+const { getBase64Image } = electron.remote.require('./webapps-tools');
 
 // Fix problem with Extensions
 
@@ -12,6 +7,12 @@ chrome = {
     getURL: file => getBase64Image(file, 'extensions/**/'),
   },
 };
+
+// Messages Creators
+
+const message = type => data =>
+  Object.assign({ type, mate: { id: WORKSPACE_APP_ID, type: WORKSPACE_APP_TYPE } }, data);
+const notification = message('NOTIFICATION');
 
 // Catch Notifications
 function setNotificationCallback(callback) {
@@ -28,4 +29,4 @@ function setNotificationCallback(callback) {
   window.Notification = newNotify;
 }
 
-setNotificationCallback(data => electron.ipcRenderer.sendToHost(sendNotification(data)));
+setNotificationCallback(data => electron.ipcRenderer.sendToHost(notification(data)));

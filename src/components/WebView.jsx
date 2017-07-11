@@ -16,7 +16,7 @@ class WebView extends Component {
       });
       this.webView.executeJavaScript(
         `window.WORKSPACE_APP_ID = "${this.props.id}"; 
-        ${toolsApi.scriptFixes()}`,
+        ${toolsApi.setupScript()}`,
         false,
         () => console.log('Fixes Loaded'),
       );
@@ -28,8 +28,8 @@ class WebView extends Component {
           false,
           () => console.log(`Extension ${manifest.id} Loaded`),
         );
-        this.webView.openDevTools();
       }
+      this.webView.openDevTools();
     });
   };
 
@@ -37,6 +37,7 @@ class WebView extends Component {
     const { innerRef, onDomReady, active, style } = this.props;
     return (
       <ElectronWebView
+        onNewWindow={({ url }) => toolsApi.openExternal(url)}
         onIpcMessage={({ channel }) => console.log('ipc', channel)}
         onDomReady={(ev) => {
           this.webView = ev.currentTarget;

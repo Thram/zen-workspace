@@ -10,7 +10,11 @@
     "react/prop-types": 0
   },
   "globals": {
-    "fetch": true
+    "fetch": true,
+    "electron": true,
+    "chrome": true,
+    "WORKSPACE_APP_ID": true,
+    "WORKSPACE_APP_TYPE": true
   },
   "env": {
     "jest": true,
