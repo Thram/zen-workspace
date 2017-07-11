@@ -91,5 +91,5 @@ class Edit extends Component {
 
 export default connect(undefined, dispatch => ({
   remove: app => dispatch(removeApp(app)),
-  update: app => dispatch(updateApp(app)),
+  update: app => dispatch(updateApp(app.id, app)),
 }))(Edit);

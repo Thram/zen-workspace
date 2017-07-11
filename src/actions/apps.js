@@ -1,29 +1,22 @@
 import uuidv5 from 'uuid/v5';
-import { htmlMetadata } from '../api';
-import { normalizeMeta } from '../utils';
 import { getRandomColor } from '../colors';
 
 const ADD_APP = 'ADD_APP';
-const addApp = url => (dispatch) => {
-  const action = {
-    type: ADD_APP,
-    payload: {
-      id: uuidv5(url, uuidv5.URL),
-      url,
-      selected: true,
-      color: getRandomColor(),
-    },
-  };
-  return htmlMetadata(url).then(
-    meta => dispatch({ ...action, payload: { ...action.payload, meta: normalizeMeta(meta, url) } }),
-    () => dispatch({ ...action, meta: {} }),
-  );
-};
+const addApp = url => ({
+  type: ADD_APP,
+  payload: {
+    id: uuidv5(url, uuidv5.URL),
+    url,
+    selected: true,
+    color: getRandomColor(),
+  },
+});
 
 const UPDATE_APP = 'UPDATE_APP';
-const updateApp = app => ({
+const updateApp = (id, update) => ({
   type: UPDATE_APP,
-  payload: app,
+  payload: update,
+  meta: { id },
 });
 
 const REMOVE_APP = 'REMOVE_APP';

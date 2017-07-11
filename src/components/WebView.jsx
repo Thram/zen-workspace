@@ -7,6 +7,13 @@ import ElectronWebView from './ElectronWebView';
 const USER = 'thram';
 
 class WebView extends Component {
+  constructor(props) {
+    super(props);
+    this.actions = {
+      NOTIFICATION: this.props.onNotification,
+      FAVICON: this.props.onIcon,
+    };
+  }
   setupExtentions = () => {
     this.props.extensions.forEach((manifest) => {
       const { styles, scripts, matches } = extensionsApi.getSetup(manifest);
@@ -16,6 +23,7 @@ class WebView extends Component {
       });
       this.webView.executeJavaScript(
         `window.WORKSPACE_APP_ID = "${this.props.id}"; 
+        window.WORKSPACE_APP_TYPE = "${this.props.type || 'custom'}"; 
         ${toolsApi.setupScript()}`,
         false,
         () => console.log('Fixes Loaded'),
@@ -33,12 +41,18 @@ class WebView extends Component {
     });
   };
 
+  processIpcMessage = (message) => {
+    const action = this.actions[message.type];
+    if (action) action(message);
+    console.log(message);
+  };
+
   render = () => {
     const { innerRef, onDomReady, active, style } = this.props;
     return (
       <ElectronWebView
         onNewWindow={({ url }) => toolsApi.openExternal(url)}
-        onIpcMessage={({ channel }) => console.log('ipc', channel)}
+        onIpcMessage={({ channel }) => this.processIpcMessage(channel)}
         onDomReady={(ev) => {
           this.webView = ev.currentTarget;
           this.setupExtentions();

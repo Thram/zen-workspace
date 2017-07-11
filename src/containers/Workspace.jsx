@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { find } from 'lodash';
 import { connect } from 'react-redux';
 import glamorous from 'glamorous';
+import { updateApp } from '../actions/apps';
 import WebView from '../components/WebView';
 
 const Container = glamorous.div({ width: '100%', height: '100%', position: 'relative' });
@@ -25,12 +26,14 @@ class Workspace extends Component {
   apps = {};
 
   render = () => {
-    const { apps, extensions } = this.props;
+    const { apps, extensions, setBadge } = this.props;
     return (
       <Container>
         {apps.map(({ id, url, selected }) =>
           (<WebView
             extensions={extensions.enabled.map(extId => find(extensions.list, { id: extId }))}
+            onNotification={message => console.log('Notified!', message)}
+            onIcon={({ payload, meta }) => setBadge(meta.id, payload.url)}
             key={`webview_${id}`}
             id={id}
             innerRef={this.setRef(id)}
@@ -43,4 +46,7 @@ class Workspace extends Component {
   };
 }
 
-export default connect(({ apps, extensions }) => ({ apps, extensions }))(Workspace);
+export default connect(
+  ({ apps, extensions }) => ({ apps, extensions }),
+  dispatch => ({ setBadge: (id, url) => dispatch(updateApp(id, { badge: url })) }),
+)(Workspace);
