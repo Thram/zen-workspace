@@ -21,13 +21,7 @@ class WebView extends Component {
       matches.forEach((match) => {
         applyExtension = !!wildcard(match, this.webView.getURL()) || applyExtension;
       });
-      this.webView.executeJavaScript(
-        `window.WORKSPACE_APP_ID = "${this.props.id}"; 
-        window.WORKSPACE_APP_TYPE = "${this.props.type || 'custom'}"; 
-        ${toolsApi.setupScript()}`,
-        false,
-        () => console.log('Fixes Loaded'),
-      );
+
       if (applyExtension) {
         this.webView.insertCSS(styles);
         this.webView.executeJavaScript(
@@ -37,8 +31,23 @@ class WebView extends Component {
           () => console.log(`Extension ${manifest.id} Loaded`),
         );
       }
-      this.webView.openDevTools();
     });
+  };
+
+  setupEnvironment = (ev) => {
+    const { innerRef, onDomReady } = this.props;
+    this.webView = ev.currentTarget;
+    this.webView.openDevTools();
+    this.webView.executeJavaScript(
+      `window.WORKSPACE_APP_ID = "${this.props.id}"; 
+        window.WORKSPACE_APP_TYPE = "${this.props.type || 'custom'}"; 
+        ${toolsApi.setupScript()}`,
+      false,
+      () => console.log('Fixes Loaded'),
+    );
+    this.setupExtentions();
+    if (innerRef) innerRef(this.webView);
+    if (onDomReady) onDomReady(ev);
   };
 
   processIpcMessage = (message) => {
@@ -48,17 +57,12 @@ class WebView extends Component {
   };
 
   render = () => {
-    const { innerRef, onDomReady, active, style } = this.props;
+    const { active, style } = this.props;
     return (
       <ElectronWebView
         onNewWindow={({ url }) => toolsApi.openExternal(url)}
         onIpcMessage={({ channel }) => this.processIpcMessage(channel)}
-        onDomReady={(ev) => {
-          this.webView = ev.currentTarget;
-          this.setupExtentions();
-          if (innerRef) innerRef(this.webView);
-          if (onDomReady) onDomReady(ev);
-        }}
+        onDomReady={this.setupEnvironment}
         partition={`persist:${USER}`}
         style={{
           height: '100%',

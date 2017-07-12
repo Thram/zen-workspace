@@ -2,7 +2,7 @@ import React from 'react';
 import glamorous from 'glamorous';
 import { blue } from '../colors';
 
-const Badge = glamorous.div(
+const Avatar = glamorous.div(
   {
     display: 'flex',
     alignItems: 'center',
@@ -15,6 +15,7 @@ const Badge = glamorous.div(
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
     border: '3px solid white',
+    overflow: 'hidden',
   },
   ({ app }) => ({
     borderColor: app.selected ? blue(500) : 'white',
@@ -22,17 +23,19 @@ const Badge = glamorous.div(
   }),
 );
 
+const Icon = glamorous.img({ maxWidth: '100%', maxHeight: '100%' });
+
 const AppsMenu = ({ apps, onClick, onRightClick }) =>
   (<div>
     {apps.map((app, index) =>
-      (<Badge
+      (<Avatar
         app={app}
         key={`avatar_${app.id}`}
         onClick={() => onClick(app)}
         onContextMenu={() => onRightClick(app)}
       >
-        {app.badge ? <img src={app.badge} alt="Badge" /> : index}
-      </Badge>),
+        {app.avatar ? <Icon src={app.avatar} alt="Avatar" /> : index}
+      </Avatar>),
     )}
   </div>);
 

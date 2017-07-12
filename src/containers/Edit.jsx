@@ -60,10 +60,10 @@ class Edit extends Component {
               marginForm
             />
             <TextField
-              label="Badge"
+              label="Avatar"
               fullWidth
-              value={(data.image && data.image[0]) || ''}
-              onChange={event => this.setState({ image: [event.target.value] })}
+              value={data.avatar || ''}
+              onChange={event => this.setState({ avatar: [event.target.value] })}
               marginForm
             />
           </CardContent>

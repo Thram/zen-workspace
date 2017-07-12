@@ -26,14 +26,14 @@ class Workspace extends Component {
   apps = {};
 
   render = () => {
-    const { apps, extensions, setBadge } = this.props;
+    const { apps, extensions, setAvatar } = this.props;
     return (
       <Container>
         {apps.map(({ id, url, selected }) =>
           (<WebView
             extensions={extensions.enabled.map(extId => find(extensions.list, { id: extId }))}
             onNotification={message => console.log('Notified!', message)}
-            onIcon={({ payload, meta }) => setBadge(meta.id, payload.url)}
+            onIcon={({ payload, meta }) => setAvatar(meta.id, payload.url)}
             key={`webview_${id}`}
             id={id}
             innerRef={this.setRef(id)}
@@ -48,5 +48,5 @@ class Workspace extends Component {
 
 export default connect(
   ({ apps, extensions }) => ({ apps, extensions }),
-  dispatch => ({ setBadge: (id, url) => dispatch(updateApp(id, { badge: url })) }),
+  dispatch => ({ setAvatar: (id, url) => dispatch(updateApp(id, { avatar: url })) }),
 )(Workspace);
