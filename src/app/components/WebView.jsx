@@ -4,8 +4,6 @@ import wildcard from 'wildcard';
 import { extensions as extensionsApi, tools as toolsApi } from '../api';
 import ElectronWebView from './ElectronWebView';
 
-const USER = 'thram';
-
 class WebView extends Component {
   constructor(props) {
     super(props);
@@ -14,6 +12,11 @@ class WebView extends Component {
       FAVICON: this.props.onIcon,
     };
   }
+
+  shouldComponentUpdate(nextProps) {
+    return nextProps.active;
+  }
+
   setupExtentions = () => {
     this.props.extensions.forEach((manifest) => {
       const { styles, scripts, matches } = extensionsApi.getSetup(manifest);
@@ -40,7 +43,8 @@ class WebView extends Component {
     this.webView.openDevTools();
     this.webView.executeJavaScript(
       `window.WORKSPACE_APP_ID = "${this.props.id}"; 
-        window.WORKSPACE_APP_TYPE = "${this.props.type || 'custom'}"; 
+        window.WORKSPACE_APP_NAME = "${this.props.name || 'custom'}"; 
+        window.WORKSPACE_APP_TYPE = "${this.props.type || 'default'}"; 
         ${toolsApi.setupScript()}`,
       false,
       () => console.log('Fixes Loaded'),
@@ -57,13 +61,13 @@ class WebView extends Component {
   };
 
   render = () => {
-    const { active, style } = this.props;
+    const { active, style, persist } = this.props;
     return (
       <ElectronWebView
         onNewWindow={({ url }) => toolsApi.openExternal(url)}
         onIpcMessage={({ channel }) => this.processIpcMessage(channel)}
         onDomReady={this.setupEnvironment}
-        partition={`persist:${USER}`}
+        partition={`persist:${persist}`}
         style={{
           height: '100%',
           width: '100%',

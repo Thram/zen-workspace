@@ -2,11 +2,13 @@ import uuidv5 from 'uuid/v5';
 import { getRandomColor } from '../colors';
 
 const ADD_APP = 'ADD_APP';
-const addApp = url => ({
+const addApp = ({ url, name, type }) => ({
   type: ADD_APP,
   payload: {
     id: uuidv5(url, uuidv5.URL),
     url,
+    name,
+    type,
     selected: true,
     color: getRandomColor(),
   },

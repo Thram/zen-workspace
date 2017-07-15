@@ -153,7 +153,7 @@ export default function (env = {}) {
   return {
     cache: true,
     entry: {
-      app: `${__dirname}/src/index`,
+      app: `${__dirname}/src/app/index`,
     },
     target: 'electron-renderer',
     output: {

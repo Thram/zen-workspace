@@ -14,7 +14,10 @@
     "electron": true,
     "chrome": true,
     "WORKSPACE_APP_ID": true,
-    "WORKSPACE_APP_TYPE": true
+    "WORKSPACE_APP_NAME": true,
+    "WORKSPACE_APP_TYPE": true,
+    "SCRAPPERS": true,
+    "MESSENGER": true
   },
   "env": {
     "jest": true,

@@ -5,6 +5,8 @@ import glamorous from 'glamorous';
 import { updateApp } from '../actions/apps';
 import WebView from '../components/WebView';
 
+const USER = 'thram';
+
 const Container = glamorous.div({ width: '100%', height: '100%', position: 'relative' });
 
 class Workspace extends Component {
@@ -26,16 +28,19 @@ class Workspace extends Component {
   apps = {};
 
   render = () => {
-    const { apps, extensions, setAvatar } = this.props;
+    const { apps, extensions, setAvatar, setNotifications } = this.props;
     return (
       <Container>
-        {apps.map(({ id, url, selected }) =>
+        {apps.map(({ id, name, type, url, selected }) =>
           (<WebView
             extensions={extensions.enabled.map(extId => find(extensions.list, { id: extId }))}
-            onNotification={message => console.log('Notified!', message)}
+            onNotification={({ payload, meta }) => setNotifications(meta.id, payload)}
             onIcon={({ payload, meta }) => setAvatar(meta.id, payload.url)}
             key={`webview_${id}`}
             id={id}
+            name={name}
+            type={type}
+            persist={`${type}:${USER}`}
             innerRef={this.setRef(id)}
             src={url}
             active={selected}
@@ -48,5 +53,8 @@ class Workspace extends Component {
 
 export default connect(
   ({ apps, extensions }) => ({ apps, extensions }),
-  dispatch => ({ setAvatar: (id, url) => dispatch(updateApp(id, { avatar: url })) }),
+  dispatch => ({
+    setAvatar: (id, url) => dispatch(updateApp(id, { avatar: url })),
+    setNotifications: (id, notifications) => dispatch(updateApp(id, { notifications })),
+  }),
 )(Workspace);
