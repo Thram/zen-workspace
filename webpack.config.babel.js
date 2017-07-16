@@ -157,7 +157,7 @@ export default function (env = {}) {
     },
     target: 'electron-renderer',
     output: {
-      path: `${__dirname}/dist`,
+      path: `${__dirname}/app`,
       filename: '[name].[chunkhash].js',
     },
     resolve: {

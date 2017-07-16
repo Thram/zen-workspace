@@ -52,11 +52,11 @@ const renderStatus = (status = {}) =>
 
 const AppsMenu = ({ apps, onClick, onRightClick }) =>
   (<div>
-    {apps.map((app, index) =>
+    {apps.map(app =>
       (<div key={`avatar_${app.id}`} style={{ position: 'relative' }}>
         {renderStatus(app.status)}
         <Avatar app={app} onClick={() => onClick(app)} onContextMenu={() => onRightClick(app)}>
-          {app.avatar ? <Icon src={app.avatar} alt="Avatar" /> : index}
+          {app.avatar && <Icon src={app.avatar} alt="Avatar" />}
         </Avatar>
       </div>),
     )}

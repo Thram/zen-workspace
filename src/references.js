@@ -1,4 +1,4 @@
-const WEBAPP_PATH = './webapp';
+const WEBAPP_PATH = './src/webapp';
 
 const EXTENSIONS_FOLDER = './extensions';
 

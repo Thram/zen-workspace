@@ -38,12 +38,13 @@ class WebView extends Component {
   setupEnvironment = (ev) => {
     const { innerRef, onDomReady } = this.props;
     this.webView = ev.currentTarget;
-    if (process.env.NODE_ENV === 'development') this.webView.openDevTools();
+    // if (process.env.NODE_ENV === 'development') this.webView.openDevTools();
+    this.webView.openDevTools();
     this.webView.executeJavaScript(
       `window.WORKSPACE_APP_ID = "${this.props.id}"; 
-        window.WORKSPACE_APP_NAME = "${this.props.name || 'custom'}"; 
-        window.WORKSPACE_APP_TYPE = "${this.props.type || 'default'}"; 
-        ${toolsApi.setupScript()}`,
+       window.WORKSPACE_APP_NAME = "${this.props.name || 'custom'}"; 
+       window.WORKSPACE_APP_TYPE = "${this.props.type || 'default'}"; 
+       ${toolsApi.setupScript()}`,
       false,
       () => console.log('Fixes Loaded'),
     );

@@ -88,6 +88,19 @@ class AddWebApp extends Component {
     error: false,
   };
 
+  componentDidMount() {
+    window.addEventListener('click', this.onClickOutside.bind(this), true);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('click', this.onClickOutside.bind(this), true);
+  }
+
+  onClickOutside() {
+    console.log('click outside');
+    if (this.state.showCard) this.toggleCard();
+  }
+
   onAdd = () => {
     if (isURL(this.state.url)) {
       this.toggleCard();
@@ -126,8 +139,8 @@ class AddWebApp extends Component {
 
   applyMotion = ({ width, height, opacity }) => ({
     position: 'absolute',
-    transform: 'translateY(-100%) translateX(50px)',
-    top: 0,
+    bottom: '65px',
+    left: '50px',
     opacity,
     height: `${height}px`,
     width: `${width}px`,

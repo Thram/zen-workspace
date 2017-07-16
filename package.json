@@ -1,13 +1,17 @@
 {
-  "name": "Workspace",
+  "name": "ZenWorkspace",
   "version": "0.0.1",
   "description": "Electron app to manage multiple webapps",
-  "main": "src/index.js",
+  "main": "index.js",
   "repository": "https://github.com/TouchtechLtd/starter-kit-react.git",
   "author": "Thram <thramposo@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "prebuild": "rimraf dist",
+    "postinstall": "install-app-deps",
+    "pack": "build --dir",
+    "dist": "yarn build -- -p && build",
+    "prebuild": "rimraf build",
+    "postbuild": "cpy assets/** build",
     "build": "NODE_PATH=. webpack",
     "build:gzip": "yarn build -- -p --env.compress",
     "build:docs": "build-storybook -o ${PWD}/docs",
@@ -18,8 +22,6 @@
     "test": "yarn lint && jest",
     "snap": "yarn lint && jest -u",
     "electron": "electron .",
-    "pack": "electron-builder --dir",
-    "dist": "electron-builder",
     "chrome-extension": "repackage-chrome-extension \"~/Library/Application Support/Google/Chrome/Default/Extensions/\"",
     "dev-server": "webpack-dev-server --host 0.0.0.0 --port 8080",
     "start:prod": "NODE_ENV=production npm-run-all \"build -- -p \" electron",
@@ -27,9 +29,28 @@
     "storybook": "start-storybook -p 6006"
   },
   "build": {
-    "appId": "your.id",
-    "mac": {
-      "category": "your.app.category.type"
+    "appId": "thram.zenWorkspace",
+    "asar": false,
+    "dmg": {
+      "contents": [
+        {
+          "x": 110,
+          "y": 150
+        },
+        {
+          "x": 240,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "linux": {
+      "target": ["AppImage", "deb"]
+    },
+    "win": {
+      "target": "squirrel",
+      "icon": "build/icon.ico"
     }
   },
   "jest": {
@@ -52,10 +73,12 @@
     "babel-loader": "^7.1.1",
     "commitizen": "^2.9.6",
     "compression-webpack-plugin": "^0.4.0",
+    "cpy": "^5.0.0",
+    "cpy-cli": "^1.0.1",
     "css-loader": "^0.28.4",
     "cz-conventional-changelog": "^2.0.0",
     "electron": "^1.6.11",
-    "electron-builder": "^19.13.0",
+    "electron-builder": "^19.16.0",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.2",
     "eslint-plugin-import": "^2.7.0",
@@ -102,6 +125,7 @@
     "material-ui-icons": "^1.0.0-alpha.19",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
+    "react-click-outside": "^2.3.1",
     "react-dom": "^15.6.1",
     "react-motion": "^0.5.0",
     "react-redux": "^5.0.5",

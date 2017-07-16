@@ -1,4 +1,4 @@
-const { getBase64Image } = electron.remote.require('./webapp/tools');
+const { getBase64Image } = electron.remote.require('./src/webapp/tools');
 
 // Fix problem with Extensions
 chrome = {
