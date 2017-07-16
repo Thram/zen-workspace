@@ -1,5 +1,7 @@
 import electron, { app, BrowserWindow } from 'electron';
 
+const path = require('path');
+
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit();
@@ -11,8 +13,9 @@ app.on('ready', () => {
   let mainWindow = new BrowserWindow({
     width: Math.round(width * 0.6),
     height: Math.round(height * 0.9),
+    icon: path.join(__dirname, '/src/icons/mac/zen_workspace.icns'),
   });
-  mainWindow.webContents.openDevTools();
+  if (process.env.NODE_ENV === 'development') mainWindow.webContents.openDevTools();
 
   const url =
     process.env.NODE_ENV === 'development'

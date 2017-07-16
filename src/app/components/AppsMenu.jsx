@@ -1,5 +1,7 @@
 import React from 'react';
 import glamorous from 'glamorous';
+import Chat from 'material-ui-icons/Chat';
+import ChatBubble from 'material-ui-icons/ChatBubble';
 import { blue } from '../colors';
 
 const Avatar = glamorous.div(
@@ -23,27 +25,36 @@ const Avatar = glamorous.div(
   }),
 );
 
-const Badge = glamorous.div(
-  {
-    position: 'absolute',
-    borderRadius: '50%',
-    transform: 'translateX(25%) translateY(-25%)',
-    top: 0,
-    right: 0,
-    height: '1rem',
-    width: '1rem',
-  },
-  ({ color }) => ({ backgroundColor: color || 'transparent' }),
-);
+const Badge = glamorous.div({
+  position: 'absolute',
+  transform: 'translateX(25%) translateY(-25%)',
+  top: 0,
+  right: '-5px',
+});
 const Icon = glamorous.img({ maxWidth: '100%', maxHeight: '100%' });
+
+const renderStatus = (status = {}) =>
+  status.unread &&
+  <Badge>
+    <ChatBubble
+      style={{
+        color: '#333',
+        position: 'absolute',
+        top: '1px',
+        left: '1px',
+        zIndex: -1,
+      }}
+    />
+    {status.important
+      ? <Chat style={{ color: '#D2374E' }} />
+      : <ChatBubble style={{ color: '#AACBBE' }} />}
+  </Badge>;
 
 const AppsMenu = ({ apps, onClick, onRightClick }) =>
   (<div>
     {apps.map((app, index) =>
       (<div key={`avatar_${app.id}`} style={{ position: 'relative' }}>
-        <Badge color={app.notifications && app.notifications.unread && 'red'}>
-          {app.notifications && app.notifications.important ? '!' : ''}
-        </Badge>
+        {renderStatus(app.status)}
         <Avatar app={app} onClick={() => onClick(app)} onContextMenu={() => onRightClick(app)}>
           {app.avatar ? <Icon src={app.avatar} alt="Avatar" /> : index}
         </Avatar>

@@ -3,6 +3,10 @@ function setNotificationCallback(callback) {
   const OldNotify = window.Notification;
 
   function newNotify(title, opt) {
+    console.log('Notify!', {
+      name: title,
+      options: opt,
+    });
     return callback({
       name: title,
       options: opt,
@@ -27,11 +31,12 @@ const message = type => data => ({
   payload: data,
 });
 
+const status = message('STATUS');
 const notification = message('NOTIFICATION');
 const favicon = message('FAVICON');
 
 const MESSENGER = {
-  types: { notification, favicon },
+  types: { notification, favicon, status },
   create: message,
   send: msg => electron.ipcRenderer.sendToHost(msg),
   hook: () => setNotificationCallback(data => MESSENGER.send(notification(data))),

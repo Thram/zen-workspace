@@ -1,4 +1,4 @@
-const { getBase64Image } = electron.remote.require('./src/webapp/tools');
+const { getBase64Image } = electron.remote.require('./webapp/tools');
 
 // Fix problem with Extensions
 chrome = {
@@ -11,11 +11,26 @@ MESSENGER.hook();
 
 MESSENGER.send(MESSENGER.types.favicon({ url: SCRAPPERS.icon() }));
 
-console.log('Setup!', document.location.hostname);
-console.log('Setup!', WORKSPACE_APP_ID, WORKSPACE_APP_NAME, WORKSPACE_APP_TYPE);
-console.log('Setup!', SCRAPPERS[WORKSPACE_APP_NAME]());
+const scrapper = SCRAPPERS[WORKSPACE_APP_NAME];
 
-MESSENGER.send(MESSENGER.types.notification(SCRAPPERS[WORKSPACE_APP_NAME]()));
+if (scrapper) {
+  let lastState = scrapper && scrapper();
+
+  const notifyStatus = () => MESSENGER.send(MESSENGER.types.status(lastState));
+
+  const unsubscribe = SCRAPPERS.observeDOM(() => {
+    const currentState = scrapper();
+    if (
+      lastState.unread !== currentState.unread ||
+      lastState.important !== currentState.important
+    ) {
+      lastState = currentState;
+      notifyStatus();
+    }
+  });
+  notifyStatus();
+  window.onbeforeunload = () => unsubscribe();
+}
 
 // Check for notifications
 

@@ -28,12 +28,13 @@ class Workspace extends Component {
   apps = {};
 
   render = () => {
-    const { apps, extensions, setAvatar, setNotifications } = this.props;
+    const { apps, extensions, setAvatar, setNotifications, setStatus } = this.props;
     return (
       <Container>
-        {apps.map(({ id, name, type, url, selected }) =>
+        {apps.map(({ id, name, type = 'default', url, selected }) =>
           (<WebView
             extensions={extensions.enabled.map(extId => find(extensions.list, { id: extId }))}
+            onStatus={({ payload, meta }) => setStatus(meta.id, payload)}
             onNotification={({ payload, meta }) => setNotifications(meta.id, payload)}
             onIcon={({ payload, meta }) => setAvatar(meta.id, payload.url)}
             key={`webview_${id}`}
@@ -56,5 +57,6 @@ export default connect(
   dispatch => ({
     setAvatar: (id, url) => dispatch(updateApp(id, { avatar: url })),
     setNotifications: (id, notifications) => dispatch(updateApp(id, { notifications })),
+    setStatus: (id, status) => dispatch(updateApp(id, { status })),
   }),
 )(Workspace);

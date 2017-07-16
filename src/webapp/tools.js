@@ -13,9 +13,9 @@ const getBase64Image = (file, pattern) => {
 };
 
 const setupScript = () => {
-  const scrappers = readFileSync(`${app.getAppPath()}/${SCRIPTS.scrappers}`, 'utf-8');
-  const messenger = readFileSync(`${app.getAppPath()}/${SCRIPTS.messenger}`, 'utf-8');
-  const setup = readFileSync(`${app.getAppPath()}/${SCRIPTS.setup}`, 'utf-8');
+  const scrappers = readFileSync(`${app.getAppPath()}/src/${SCRIPTS.scrappers}`, 'utf-8');
+  const messenger = readFileSync(`${app.getAppPath()}/src/${SCRIPTS.messenger}`, 'utf-8');
+  const setup = readFileSync(`${app.getAppPath()}/src/${SCRIPTS.setup}`, 'utf-8');
   return `
   ${scrappers}
   ${messenger}

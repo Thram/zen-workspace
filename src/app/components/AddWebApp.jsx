@@ -23,6 +23,7 @@ import FlatIcon from './FlatIcon';
 const APP_TYPES = [
   {
     name: 'slack',
+    type: 'slack',
     url: '[channel].slack.com',
   },
   {
@@ -35,6 +36,7 @@ const APP_TYPES = [
   },
   {
     name: 'github',
+    type: 'github',
     url: 'https://www.github.com',
   },
   {

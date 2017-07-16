@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import omit from 'lodash/omit';
 import wildcard from 'wildcard';
+import { Motion, spring } from 'react-motion';
 import { extensions as extensionsApi, tools as toolsApi } from '../api';
 import ElectronWebView from './ElectronWebView';
 
@@ -8,13 +9,10 @@ class WebView extends Component {
   constructor(props) {
     super(props);
     this.actions = {
+      STATUS: this.props.onStatus,
       NOTIFICATION: this.props.onNotification,
       FAVICON: this.props.onIcon,
     };
-  }
-
-  shouldComponentUpdate(nextProps) {
-    return nextProps.active;
   }
 
   setupExtentions = () => {
@@ -40,7 +38,7 @@ class WebView extends Component {
   setupEnvironment = (ev) => {
     const { innerRef, onDomReady } = this.props;
     this.webView = ev.currentTarget;
-    this.webView.openDevTools();
+    if (process.env.NODE_ENV === 'development') this.webView.openDevTools();
     this.webView.executeJavaScript(
       `window.WORKSPACE_APP_ID = "${this.props.id}"; 
         window.WORKSPACE_APP_NAME = "${this.props.name || 'custom'}"; 
@@ -63,26 +61,28 @@ class WebView extends Component {
   render = () => {
     const { active, style, persist } = this.props;
     return (
-      <ElectronWebView
-        onNewWindow={({ url }) => toolsApi.openExternal(url)}
-        onIpcMessage={({ channel }) => this.processIpcMessage(channel)}
-        onDomReady={this.setupEnvironment}
-        partition={`persist:${persist}`}
-        style={{
-          height: '100%',
-          width: '100%',
-          backgroundColor: 'white',
-          display: 'inline-flex',
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          transition: 'opacity .5s ease',
-          opacity: active ? 1 : 0,
-          zIndex: active ? 10 : 0,
-          ...style,
-        }}
-        {...omit(this.props, ['style', 'active', 'innerRef', 'extensions', 'presist'])}
-      />
+      <Motion style={{ opacity: spring(active ? 1 : 0) }}>
+        {({ opacity }) =>
+          (<ElectronWebView
+            onNewWindow={({ url }) => toolsApi.openExternal(url)}
+            onIpcMessage={({ channel }) => this.processIpcMessage(channel)}
+            onDomReady={this.setupEnvironment}
+            partition={`persist:${persist}`}
+            style={{
+              height: '100%',
+              width: '100%',
+              backgroundColor: 'white',
+              display: 'inline-flex',
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              opacity,
+              zIndex: active ? 10 : 0,
+              ...style,
+            }}
+            {...omit(this.props, ['style', 'active', 'innerRef', 'extensions', 'presist'])}
+          />)}
+      </Motion>
     );
   };
 }
