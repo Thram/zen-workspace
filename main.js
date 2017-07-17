@@ -13,12 +13,12 @@ app.on('ready', () => {
     height: Math.round(height * 0.9),
     webSecurity: false,
   });
-  mainWindow.webContents.openDevTools();
+  if (process.env.NODE_ENV === 'development') mainWindow.webContents.openDevTools();
 
   const url =
     process.env.NODE_ENV === 'development'
       ? 'http://0.0.0.0:8080'
-      : `file://${__dirname}/index.html`;
+      : `file://${__dirname}/app/index.html`;
   mainWindow.loadURL(url);
   mainWindow.on('closed', () => (mainWindow = null));
 });

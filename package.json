@@ -28,6 +28,7 @@
     "start": "NODE_ENV=development npm-run-all --parallel electron dev-server ",
     "storybook": "start-storybook -p 6006"
   },
+  "files": ["*.js", "app", "src", "node_modules"],
   "build": {
     "appId": "thram.zenWorkspace",
     "asar": false,
