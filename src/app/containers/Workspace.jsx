@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { find } from 'lodash';
 import { connect } from 'react-redux';
 import glamorous from 'glamorous';
+import { normalizeUrl } from '../utils';
 import { updateApp } from '../actions/apps';
 import WebView from '../components/WebView';
-
-const USER = 'thram';
 
 const Container = glamorous.div({ width: '100%', height: '100%', position: 'relative' });
 
@@ -28,20 +27,20 @@ class Workspace extends Component {
   apps = {};
 
   render = () => {
-    const { apps, extensions, setAvatar, setNotifications, setStatus } = this.props;
+    const { apps, sessions, extensions, setAvatar, setNotifications, setStatus } = this.props;
     return (
       <Container>
-        {apps.map(({ id, name, type = 'default', url, selected }) =>
+        {apps.map(({ id, name, session, avatar, type = 'default', url, selected }) =>
           (<WebView
             extensions={extensions.enabled.map(extId => find(extensions.list, { id: extId }))}
             onStatus={({ payload, meta }) => setStatus(meta.id, payload)}
             onNotification={({ payload, meta }) => setNotifications(meta.id, payload)}
-            onIcon={({ payload, meta }) => setAvatar(meta.id, payload.url)}
+            onIcon={({ payload, meta }) => !avatar && setAvatar(meta.id, payload.url)}
             key={`webview_${id}`}
             id={id}
             name={name}
             type={type}
-            persist={`${type}:${USER}`}
+            persist={session || sessions[0]}
             innerRef={this.setRef(id)}
             src={url}
             active={selected}
@@ -53,9 +52,9 @@ class Workspace extends Component {
 }
 
 export default connect(
-  ({ apps, extensions }) => ({ apps, extensions }),
+  ({ apps, sessions, extensions }) => ({ apps, sessions, extensions }),
   dispatch => ({
-    setAvatar: (id, url) => dispatch(updateApp(id, { avatar: url })),
+    setAvatar: (id, url) => dispatch(updateApp(id, { avatar: normalizeUrl(url) })),
     setNotifications: (id, notifications) => dispatch(updateApp(id, { notifications })),
     setStatus: (id, status) => dispatch(updateApp(id, { status })),
   }),

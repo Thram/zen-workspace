@@ -2,7 +2,6 @@ import React from 'react';
 import glamorous from 'glamorous';
 import Chat from 'material-ui-icons/Chat';
 import ChatBubble from 'material-ui-icons/ChatBubble';
-import { blue } from '../colors';
 
 const Avatar = glamorous.div(
   {
@@ -20,7 +19,7 @@ const Avatar = glamorous.div(
     overflow: 'hidden',
   },
   ({ app }) => ({
-    borderColor: app.selected ? blue(500) : 'white',
+    borderColor: app.selected ? '#30ABC2' : '#EFF0ED',
     backgroundColor: app.color,
   }),
 );

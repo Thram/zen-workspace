@@ -7,7 +7,8 @@ const processReducer = (reducers, initState = {}) => (state = initState, action)
 
 const checkAbsoluteUrl = url => !!url.match(/^(?:(ht|f)tp(s?):\/\/)?/)[0];
 
-const normalizeUrl = url => (checkAbsoluteUrl(url) ? url : `https://${url}`);
+const normalizeUrl = url =>
+  checkAbsoluteUrl(url) ? url : `https://${url.match(/(.*\/\/)?(.*)$/)[2]}`;
 
 const getMetaSchemaOrg = ({ general = {}, schemaOrg = {} }) => ({
   ...general,

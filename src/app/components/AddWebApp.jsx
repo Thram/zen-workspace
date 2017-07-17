@@ -88,19 +88,6 @@ class AddWebApp extends Component {
     error: false,
   };
 
-  componentDidMount() {
-    window.addEventListener('click', this.onClickOutside.bind(this), true);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('click', this.onClickOutside.bind(this), true);
-  }
-
-  onClickOutside() {
-    console.log('click outside');
-    if (this.state.showCard) this.toggleCard();
-  }
-
   onAdd = () => {
     if (isURL(this.state.url)) {
       this.toggleCard();

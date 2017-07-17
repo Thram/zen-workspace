@@ -4,7 +4,7 @@ import glamorous from 'glamorous';
 import IconButton from 'material-ui/IconButton';
 import SettingsIcon from 'material-ui-icons/Settings';
 import { blueGrey, blue } from '../colors';
-import { addApp, selectApp } from '../actions/apps';
+import { addApp as addAppAction, selectApp as selectAppAction } from '../actions/apps';
 import AddWebApp from '../components/AddWebApp';
 import AppsMenu from '../components/AppsMenu';
 import Workspace from './Workspace';
@@ -43,37 +43,41 @@ const Content = glamorous.div({
 class Main extends Component {
   state = {};
 
-  render = () =>
-    (<Container>
-      <Dashboard>
-        <AppsMenu
-          apps={this.props.apps}
-          onClick={app => this.props.selectApp(app.id)}
-          onRightClick={app => this.setState({ editApp: app })}
-        />
-        <BottomActions>
-          <IconButton
-            color="contrast"
-            onClick={() => this.setState({ showSettings: !this.state.showSettings })}
-          >
-            <SettingsIcon />
-          </IconButton>
-          <AddWebApp onAdd={this.props.addApp} />
-        </BottomActions>
-      </Dashboard>
-      <Content>
-        <Workspace />
-        {this.state.showSettings && <Settings />}
-        {this.state.editApp &&
-          <Edit app={this.state.editApp} onClose={() => this.setState({ editApp: undefined })} />}
-      </Content>
-    </Container>);
+  render = () => {
+    const { apps, sessions, selectApp, addApp } = this.props;
+    const { showSettings, editApp } = this.state;
+    return (
+      <Container>
+        <Dashboard>
+          <AppsMenu
+            apps={apps}
+            onClick={app => selectApp(app.id)}
+            onRightClick={app => this.setState({ editApp: app })}
+          />
+          <BottomActions>
+            <IconButton
+              color="contrast"
+              onClick={() => this.setState({ showSettings: !showSettings })}
+            >
+              <SettingsIcon />
+            </IconButton>
+            <AddWebApp sessions={sessions} onAdd={addApp} />
+          </BottomActions>
+        </Dashboard>
+        <Content>
+          <Workspace />
+          {showSettings && <Settings />}
+          {editApp && <Edit app={editApp} onClose={() => this.setState({ editApp: undefined })} />}
+        </Content>
+      </Container>
+    );
+  };
 }
 
 export default connect(
-  ({ apps }) => ({ apps }),
+  ({ apps, sessions }) => ({ apps, sessions }),
   dispatch => ({
-    selectApp: id => dispatch(selectApp(id)),
-    addApp: url => dispatch(addApp(url)),
+    selectApp: id => dispatch(selectAppAction(id)),
+    addApp: url => dispatch(addAppAction(url)),
   }),
 )(Main);
