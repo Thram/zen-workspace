@@ -12,7 +12,7 @@ const SCRAPPERS = {
     return { unread: unread.length > 0, important: unread.join().indexOf('*') >= 0 };
   },
   icon: () => {
-    const iconsSelector = 'link[rel=icon], link[rel="shortcut icon"],link[rel=apple-touch-icon]';
+    const iconsSelector = 'link[rel=icon], link[rel="shortcut icon"], link[rel^=apple-touch-icon]';
     const favicons = [].slice.call(document.head.querySelectorAll(iconsSelector));
     const getSize = iconLink => parseInt(iconLink.getAttribute('sizes') || 0, 10);
     const checkSizes = (hq, icon) => hq && getSize(hq) > getSize(icon);
@@ -23,7 +23,7 @@ const SCRAPPERS = {
   observeDOM: (callback) => {
     let DOM = '';
     const SECOND = 1000;
-    const INTERVAL = 5 * SECOND; // Check at 60 frames per second
+    const INTERVAL = 5 * SECOND;
     const body = document.body;
     const check = () => {
       if (DOM !== body.innerHTML) {

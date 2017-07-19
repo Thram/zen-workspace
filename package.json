@@ -11,6 +11,7 @@
     "pack": "build --dir",
     "dist": "NODE_ENV=production yarn build -- -p && build",
     "prebuild": "rimraf release",
+    "predist": "rimraf dist",
     "build": "NODE_PATH=. webpack",
     "build:gzip": "yarn build -- -p --env.compress",
     "precz": "yarn test",
@@ -25,9 +26,18 @@
     "start:prod": "NODE_ENV=production npm-run-all \"build -- -p \" electron",
     "start": "NODE_ENV=development npm-run-all --parallel electron dev-server "
   },
-  "files": ["*.js", "app", "src", "node_modules"],
   "build": {
     "appId": "thram.zenWorkspace",
+    "asar": false,
+    "files": [
+      ".babelrc",
+      "main.js",
+      "index.js",
+      "menu.js",
+      "release",
+      "remote",
+      "extensions"
+    ],
     "dmg": {
       "contents": [
         {
@@ -63,7 +73,7 @@
     "babel-jest": "^20.0.3",
     "babel-loader": "^7.1.1",
     "commitizen": "^2.9.6",
-    "compression-webpack-plugin": "^0.4.0",
+    "compression-webpack-plugin": "^1.0.0",
     "cpy-cli": "^1.0.1",
     "css-loader": "^0.28.4",
     "cz-conventional-changelog": "^2.0.0",
@@ -74,7 +84,7 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.1.0",
-    "extract-text-webpack-plugin": "^2.1.2",
+    "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^0.11.2",
     "html-webpack-plugin": "^2.29.0",
     "html-webpack-template": "^6.0.1",
@@ -84,15 +94,15 @@
     "node-sass": "^4.5.3",
     "npm-run-all": "^4.0.2",
     "preload-webpack-plugin": "^1.2.2",
-    "progress-bar-webpack-plugin": "^1.9.3",
+    "progress-bar-webpack-plugin": "^1.10.0",
     "react-addons-test-utils": "^15.6.0",
     "react-test-renderer": "^15.6.1",
     "regenerator-runtime": "^0.10.5",
     "rimraf": "^2.6.1",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
-    "webpack": "^3.1.0",
-    "webpack-bundle-analyzer": "^2.8.2",
+    "webpack": "^3.3.0",
+    "webpack-bundle-analyzer": "^2.8.3",
     "webpack-dev-server": "^2.5.1"
   },
   "dependencies": {
@@ -115,8 +125,8 @@
     "react-dom": "^15.6.1",
     "react-motion": "^0.5.0",
     "react-redux": "^5.0.5",
-    "react-router-dom": "^4.1.1",
-    "redux": "^3.7.1",
+    "react-router-dom": "^4.1.2",
+    "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-persist": "^4.8.2",
     "redux-thunk": "^2.2.0",
