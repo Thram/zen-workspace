@@ -40,7 +40,7 @@ class Workspace extends Component {
             id={id}
             name={name}
             type={type}
-            persist={session || sessions[0]}
+            session={session || sessions[0]}
             innerRef={this.setRef(id)}
             src={url}
             active={selected}

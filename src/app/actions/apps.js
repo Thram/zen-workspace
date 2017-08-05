@@ -1,14 +1,15 @@
-import uuidv5 from 'uuid/v5';
+import uuidv4 from 'uuid/v4';
 import { getRandomColor } from '../colors';
 
 const ADD_APP = 'ADD_APP';
-const addApp = ({ url, name, type }) => ({
+const addApp = ({ url, name, type, session = 'default' }) => ({
   type: ADD_APP,
   payload: {
-    id: uuidv5(url, uuidv5.URL),
+    id: uuidv4(),
     url,
     name,
     type,
+    session,
     selected: true,
     color: getRandomColor(),
   },

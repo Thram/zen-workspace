@@ -60,7 +60,7 @@ class WebView extends Component {
   };
 
   render = () => {
-    const { active, style, persist } = this.props;
+    const { active, style, session } = this.props;
     return (
       <Motion style={{ opacity: spring(active ? 1 : 0) }}>
         {({ opacity }) =>
@@ -68,7 +68,7 @@ class WebView extends Component {
             onNewWindow={({ url }) => toolsApi.openExternal(url)}
             onIpcMessage={({ channel }) => this.processIpcMessage(channel)}
             onDomReady={this.setupEnvironment}
-            partition={`persist:${persist}`}
+            partition={`persist:${session}`}
             style={{
               height: '100%',
               width: '100%',

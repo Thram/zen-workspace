@@ -5,6 +5,10 @@ import IconButton from 'material-ui/IconButton';
 import SettingsIcon from 'material-ui-icons/Settings';
 import { blueGrey, blue } from '../colors';
 import { addApp as addAppAction, selectApp as selectAppAction } from '../actions/apps';
+import {
+  addSession as addSessionAction,
+  removeSession as removeSessionAction,
+} from '../actions/sessions';
 import AddWebApp from '../components/AddWebApp';
 import AppsMenu from '../components/AppsMenu';
 import Workspace from './Workspace';
@@ -44,7 +48,7 @@ class Main extends Component {
   state = {};
 
   render = () => {
-    const { apps, sessions, selectApp, addApp } = this.props;
+    const { apps, sessions, selectApp, addApp, addSession, removeSession } = this.props;
     const { showSettings, editApp } = this.state;
     return (
       <Container>
@@ -61,7 +65,12 @@ class Main extends Component {
             >
               <SettingsIcon />
             </IconButton>
-            <AddWebApp sessions={sessions} onAdd={addApp} />
+            <AddWebApp
+              sessions={sessions}
+              onAdd={addApp}
+              onAddSession={addSession}
+              onRemoveSession={removeSession}
+            />
           </BottomActions>
         </Dashboard>
         <Content>
@@ -78,6 +87,8 @@ export default connect(
   ({ apps, sessions }) => ({ apps, sessions }),
   dispatch => ({
     selectApp: id => dispatch(selectAppAction(id)),
-    addApp: url => dispatch(addAppAction(url)),
+    addApp: app => dispatch(addAppAction(app)),
+    addSession: session => dispatch(addSessionAction(session)),
+    removeSession: session => dispatch(removeSessionAction(session)),
   }),
 )(Main);

@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import glamorous from 'glamorous';
 import { isURL } from 'validator';
-import Button from 'material-ui/Button';
-import AddIcon from 'material-ui-icons/Add';
-import MailOutline from 'material-ui-icons/MailOutline';
-import DateRange from 'material-ui-icons/DateRange';
+import { capitalize } from 'lodash';
 import { Motion, spring } from 'react-motion';
+import { MailOutline, DateRange, Add, Remove, Web } from 'material-ui-icons';
+import { TextField, IconButton, Typography, Button } from 'material-ui';
 import Card, { CardActions, CardContent } from 'material-ui/Card';
-import TextField from 'material-ui/TextField';
-import IconButton from 'material-ui/IconButton';
-import Typography from 'material-ui/Typography';
-import { normalizeUrl } from '../utils';
+import Menu, { MenuItem } from 'material-ui/Menu';
+import Input from 'material-ui/Input/Input';
+import { normalizeUrl, onPressEnter } from '../utils';
 import FlatIcon from './FlatIcon';
 
 // Slack: https://[channel].slack.com
@@ -21,6 +19,11 @@ import FlatIcon from './FlatIcon';
 // Calendar: https://www.google.com/calendar
 
 const APP_TYPES = [
+  {
+    name: 'website',
+    url: '',
+    icon: <Web />,
+  },
   {
     name: 'slack',
     type: 'slack',
@@ -52,50 +55,48 @@ const APP_TYPES = [
     name: 'inbox',
     type: 'google',
     url: 'https://inbox.google.com',
-    component: onClick =>
-      (<IconButton onClick={onClick}>
-        <MailOutline />
-      </IconButton>),
+    icon: <MailOutline />,
   },
   {
     name: 'calendar',
     type: 'google',
     url: 'https://www.google.com/calendar',
-    component: onClick =>
-      (<IconButton onClick={onClick}>
-        <DateRange />
-      </IconButton>),
+    icon: <DateRange />,
   },
 ];
 
-const Shorcuts = glamorous.div({
-  fontSize: '1.5rem',
-  display: 'flex',
-  justifyContent: 'flex-end',
-});
 const UrlField = glamorous(TextField)({ flex: 1 });
-
-const AppIcon = props =>
-  (<IconButton {...props}>
-    <FlatIcon name={props.name} />
-  </IconButton>);
 
 class AddWebApp extends Component {
   state = {
     type: 'default',
     url: '',
     showCard: false,
+    showSession: false,
+    sessionAnchor: undefined,
+    showShortcuts: false,
+    shortcutAnchor: undefined,
+    session: 'default',
+    shortcut: 'website',
+    newSession: undefined,
     error: false,
   };
 
-  onAdd = () => {
-    if (isURL(this.state.url)) {
+  componentDidMount() {
+    this.card.addEventListener('mouseenter', () => clearTimeout(this.countdown));
+    this.card.addEventListener('mouseleave', this.autoClose);
+  }
+
+  onAdd = ({ url, session, name, type }) => {
+    console.log('onAdd', session);
+    if (isURL(url)) {
       this.toggleCard();
       if (this.props.onAdd) {
         this.props.onAdd({
-          url: normalizeUrl(this.state.url),
-          name: this.state.name,
-          type: this.state.type,
+          session,
+          url: normalizeUrl(url),
+          name,
+          type,
         });
       }
       this.setState({ url: '', name: '', type: 'default' });
@@ -105,13 +106,32 @@ class AddWebApp extends Component {
     }
   };
 
-  onPressEnter = (ev) => {
-    if (this.state.error) this.setState({ error: false });
-    if (ev.which === 13) this.onAdd();
+  onSubmitApp = app =>
+    this.state.error ? this.setState({ error: false }) : this.onAdd(app || this.state);
+
+  onNewSessionChange = ev => this.setState({ newSession: ev.target.value });
+
+  onAddSession = () => {
+    if (this.state.newSession) {
+      this.props.onAddSession(this.state.newSession);
+      this.setState({ newSession: '', session: this.state.newSession });
+    }
   };
 
-  onShorcutClick = ({ url, name, type }) => () =>
-    /\[.*\]/.test(url) ? this.setState({ url, name, type }) : this.props.onAdd({ url, name, type });
+  onRemoveSession = session => (ev) => {
+    ev.stopPropagation();
+    this.props.onRemoveSession(session);
+  };
+
+  onSelectSession = value => () =>
+    this.setState({ showSessions: false, session: value || this.state.session });
+
+  onSelectShortcut = shortcut => () => {
+    this.setState({ showShortcuts: false, ...shortcut, shortcut: shortcut.name });
+    if (shortcut && !/\[.*\]/.test(shortcut.url)) {
+      this.onSubmitApp({ ...shortcut, session: this.state.session });
+    }
+  };
 
   getMotion = () => ({
     width: spring(this.state.showCard ? 500 : 0),
@@ -119,41 +139,128 @@ class AddWebApp extends Component {
     opacity: spring(this.state.showCard ? 1 : 0),
   });
 
-  setRef = (ref) => {
-    console.log(ref);
+  setCardRef = (ref) => {
+    this.card = ref;
+  };
+
+  setUrlRef = (ref) => {
     this.input = ref;
+  };
+
+  autoClose = () => {
+    this.countdown = setTimeout(
+      () =>
+        !this.state.showSessions &&
+        !this.state.showShortcuts &&
+        this.input !== document.activeElement &&
+        this.toggleCard(),
+      3000,
+    );
   };
 
   applyMotion = ({ width, height, opacity }) => ({
     position: 'absolute',
     bottom: '65px',
     left: '50px',
+    transform: `scale(${opacity})`,
     opacity,
     height: `${height}px`,
     width: `${width}px`,
   });
 
-  toggleCard = () => this.setState({ showCard: !this.state.showCard });
+  openSessions = event => this.setState({ showSessions: true, sessionAnchor: event.currentTarget });
+
+  openShortcuts = event =>
+    this.setState({ showShortcuts: true, shortcutAnchor: event.currentTarget });
+
+  toggleCard = () =>
+    this.setState({
+      showCard: !this.state.showCard,
+      showSession: false,
+      showShortcuts: false,
+      shortcut: 'website',
+    });
   checkFocus = () => this.state.showCard && this.input.focus();
 
+  renderSessionsMenu = () =>
+    (<div style={{ flex: 1 }}>
+      <Button
+        aria-owns={this.state.showSessions ? 'sessions-menu' : null}
+        aria-haspopup="true"
+        onClick={this.openSessions}
+      >
+        <strong style={{ marginRight: '1rem' }}>Session:</strong> {this.state.session}
+      </Button>
+      <Menu
+        id="sessions-menu"
+        anchorEl={this.state.sessionAnchor}
+        open={this.state.showSessions}
+        onRequestClose={this.onSelectSession()}
+      >
+        <MenuItem>
+          <Input
+            value={this.state.newSession}
+            onChange={this.onNewSessionChange}
+            placeholder="New session"
+            onKeyUp={onPressEnter(this.onAddSession)}
+            inputProps={{ 'aria-label': 'New session' }}
+          />
+          <IconButton aria-label="Add" color="accent" onClick={this.onAddSession}>
+            <Add />
+          </IconButton>
+        </MenuItem>
+        {this.props.sessions.map(session =>
+          (<MenuItem key={`session_${session}`} onClick={this.onSelectSession(session)}>
+            <div style={{ flex: 1 }}>
+              {session}
+            </div>
+            <IconButton aria-label="Remove" color="accent" onClick={this.onRemoveSession(session)}>
+              <Remove />
+            </IconButton>
+          </MenuItem>),
+        )}
+      </Menu>
+    </div>);
+
+  renderShortcutsMenu = () =>
+    (<div style={{ flex: 1, textAlign: 'right' }}>
+      <Button
+        aria-owns={this.state.showShortcuts ? 'shortcuts-menu' : null}
+        aria-haspopup="true"
+        onClick={this.openShortcuts}
+      >
+        <strong style={{ marginRight: '1rem' }}>Type:</strong> {this.state.shortcut}
+      </Button>
+      <Menu
+        id="shortcuts-menu"
+        anchorEl={this.state.shortcutAnchor}
+        open={this.state.showShortcuts}
+        onRequestClose={this.onSelectShortcut()}
+      >
+        {APP_TYPES.map(({ url, name, type, icon }) =>
+          (<MenuItem key={`shortcut_${name}`} onClick={this.onSelectShortcut({ url, name, type })}>
+            <span style={{ marginRight: '1rem' }}>
+              {icon || <FlatIcon name={name} />}
+            </span>
+            {capitalize(name)}
+          </MenuItem>),
+        )}
+      </Menu>
+    </div>);
+
   render = () =>
-    (<div>
+    (<div ref={this.setCardRef}>
       <Button fab color="primary" onClick={this.toggleCard}>
-        <AddIcon />
+        <Add />
       </Button>
       <Motion style={this.getMotion()} onRest={this.checkFocus}>
         {({ width, height, opacity }) =>
           (<Card style={this.applyMotion({ width, height, opacity })}>
             <CardContent>
-              <Shorcuts>
-                {APP_TYPES.map(({ url, name, type, component }) =>
-                  (<span key={`shortcut_${name}`}>
-                    {component
-                      ? component(this.onShorcutClick({ url, name, type }))
-                      : <AppIcon name={name} onClick={this.onShorcutClick({ url, name, type })} />}
-                  </span>),
-                )}
-              </Shorcuts>
+              <div style={{ display: 'flex', flexDirection: 'row' }}>
+                {this.renderSessionsMenu()}
+                {this.renderShortcutsMenu()}
+              </div>
             </CardContent>
 
             <CardActions style={{ padding: '0 16px' }}>
@@ -167,16 +274,16 @@ class AddWebApp extends Component {
                 https://
               </Typography>
               <UrlField
-                inputRef={this.setRef}
+                inputRef={this.setUrlRef}
                 label="Add web app"
                 value={this.state.url}
                 onChange={event => this.setState({ url: event.target.value })}
                 error={this.state.error}
-                onKeyUp={this.onPressEnter}
+                onKeyUp={onPressEnter(this.onSubmitApp)}
                 inputProps={{ placeholder: 'www.github.com' }}
               />
-              <IconButton aria-label="Add" color="accent" onClick={() => this.onAdd()}>
-                <AddIcon />
+              <IconButton aria-label="Add" color="accent" onClick={this.onSubmitApp}>
+                <Add />
               </IconButton>
             </CardActions>
           </Card>)}
