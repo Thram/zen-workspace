@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "postinstall": "install-app-deps",
-    "release": "build -m -p always",
+    "release": "sh .env && build -m -p always",
     "dist": "NODE_ENV=production yarn build -- -p && build",
     "prebuild": "rimraf release",
     "predist": "rimraf dist",
@@ -34,6 +34,7 @@
       "main.js",
       "index.js",
       "menu.js",
+      "updater.js",
       "release",
       "remote",
       "extensions"

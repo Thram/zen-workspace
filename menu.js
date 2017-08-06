@@ -1,4 +1,5 @@
 import { app, shell } from 'electron';
+import checkUpdates from './updater';
 
 const template = [
   {
@@ -38,9 +39,11 @@ const template = [
     submenu: [
       {
         label: 'Learn More',
-        click() {
-          shell.openExternal('https://electron.atom.io');
-        },
+        click: () => shell.openExternal('https://github.com/Thram/zen-workspace'),
+      },
+      {
+        label: 'Check Updates',
+        click: checkUpdates,
       },
     ],
   },
