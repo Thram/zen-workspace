@@ -1,6 +1,6 @@
 {
   "name": "ZenWorkspace",
-  "version": "0.0.3",
+  "version": "0.0.6",
   "description": "Electron app to manage multiple webapps",
   "main": "index.js",
   "repository": "https://github.com/Thram/zen-workspace",
@@ -8,8 +8,7 @@
   "license": "MIT",
   "scripts": {
     "postinstall": "install-app-deps",
-    "release": "sh .env && build -m -p always",
-    "dist": "NODE_ENV=production yarn build -- -p && build",
+    "dist": "NODE_ENV=production yarn build -- -p && build -m -p always",
     "prebuild": "rimraf release",
     "predist": "rimraf dist",
     "build": "NODE_PATH=. webpack",
