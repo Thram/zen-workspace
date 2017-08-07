@@ -1,6 +1,6 @@
 {
   "name": "ZenWorkspace",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Electron app to manage multiple webapps",
   "main": "index.js",
   "repository": "https://github.com/Thram/zen-workspace",

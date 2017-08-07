@@ -82,9 +82,11 @@ class AddWebApp extends Component {
     error: false,
   };
 
-  componentDidMount() {
-    this.card.addEventListener('mouseenter', () => clearTimeout(this.countdown));
-    this.card.addEventListener('mouseleave', this.autoClose);
+  componentWillUnmount() {
+    if (this.card) {
+      this.card.removeEventListener('mouseenter', this.onLeave);
+      this.card.removeventListener('mouseleave', this.autoClose);
+    }
   }
 
   onAdd = ({ url, session, name, type }) => {
@@ -133,6 +135,8 @@ class AddWebApp extends Component {
     }
   };
 
+  onLeave = () => clearTimeout(this.countdown);
+
   getMotion = () => ({
     width: spring(this.state.showCard ? 500 : 0),
     height: spring(this.state.showCard ? 148 : 0),
@@ -140,7 +144,11 @@ class AddWebApp extends Component {
   });
 
   setCardRef = (ref) => {
-    this.card = ref;
+    if (ref) {
+      this.card = ref;
+      this.card.addEventListener('mouseenter', this.onLeave);
+      this.card.addEventListener('mouseleave', this.autoClose);
+    }
   };
 
   setUrlRef = (ref) => {
@@ -249,44 +257,46 @@ class AddWebApp extends Component {
     </div>);
 
   render = () =>
-    (<div ref={this.setCardRef}>
+    (<div>
       <Button fab color="primary" onClick={this.toggleCard}>
         <Add />
       </Button>
       <Motion style={this.getMotion()} onRest={this.checkFocus}>
         {({ width, height, opacity }) =>
-          (<Card style={this.applyMotion({ width, height, opacity })}>
-            <CardContent>
-              <div style={{ display: 'flex', flexDirection: 'row' }}>
-                {this.renderSessionsMenu()}
-                {this.renderShortcutsMenu()}
-              </div>
-            </CardContent>
+          (<div ref={this.setCardRef}>
+            <Card style={this.applyMotion({ width, height, opacity })}>
+              <CardContent>
+                <div style={{ display: 'flex', flexDirection: 'row' }}>
+                  {this.renderSessionsMenu()}
+                  {this.renderShortcutsMenu()}
+                </div>
+              </CardContent>
 
-            <CardActions style={{ padding: '0 16px' }}>
-              <Typography
-                type="subheading"
-                style={{
-                  alignSelf: 'flex-end',
-                  margin: '0 .5rem 3px 0',
-                }}
-              >
-                https://
-              </Typography>
-              <UrlField
-                inputRef={this.setUrlRef}
-                label="Add web app"
-                value={this.state.url}
-                onChange={event => this.setState({ url: event.target.value })}
-                error={this.state.error}
-                onKeyUp={onPressEnter(this.onSubmitApp)}
-                inputProps={{ placeholder: 'www.github.com' }}
-              />
-              <IconButton aria-label="Add" color="accent" onClick={this.onSubmitApp}>
-                <Add />
-              </IconButton>
-            </CardActions>
-          </Card>)}
+              <CardActions style={{ padding: '0 16px' }}>
+                <Typography
+                  type="subheading"
+                  style={{
+                    alignSelf: 'flex-end',
+                    margin: '0 .5rem 3px 0',
+                  }}
+                >
+                  https://
+                </Typography>
+                <UrlField
+                  inputRef={this.setUrlRef}
+                  label="Add web app"
+                  value={this.state.url}
+                  onChange={event => this.setState({ url: event.target.value })}
+                  error={this.state.error}
+                  onKeyUp={onPressEnter(this.onSubmitApp)}
+                  inputProps={{ placeholder: 'www.github.com' }}
+                />
+                <IconButton aria-label="Add" color="accent" onClick={this.onSubmitApp}>
+                  <Add />
+                </IconButton>
+              </CardActions>
+            </Card>
+          </div>)}
       </Motion>
     </div>);
 }
